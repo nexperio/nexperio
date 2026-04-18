@@ -4,7 +4,7 @@ export default function CTASection() {
   return (
     <section className="bg-black text-white section-padding">
       <div className="container-max text-center">
-        <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-4">
+        <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
           Diagnostic offert
         </p>
         <h2 className="font-heading font-bold text-3xl md:text-5xl mb-6 max-w-3xl mx-auto leading-tight">

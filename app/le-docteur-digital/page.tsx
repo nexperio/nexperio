@@ -53,12 +53,12 @@ export default function DocteurPage() {
       <section className="section-padding bg-black text-white">
         <div className="container-max">
           <div className="max-w-3xl">
-            <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-6">
+            <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-6">
               Fondateur de Nexperio
             </p>
             <h1 className="font-heading font-bold text-5xl md:text-7xl leading-[1.05] mb-8">
               Je ne fais pas du conseil.{' '}
-              <span className="text-brand-pink">Je soigne.</span>
+              <span className="text-brand-orange">Je soigne.</span>
             </h1>
             <p className="font-heading text-gray-300 text-xl leading-relaxed mb-4">
               Je suis le Docteur Digital.
@@ -74,12 +74,12 @@ export default function DocteurPage() {
       {/* Principles */}
       <section className="section-padding bg-white">
         <div className="container-max">
-          <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-10">
+          <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-10">
             Mes 4 principes non négociables
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {principles.map((p) => (
-              <div key={p.label} className="border-l-4 border-brand-pink pl-8 py-4">
+              <div key={p.label} className="border-l-4 border-brand-orange pl-8 py-4">
                 <h2 className="font-heading font-bold text-2xl mb-3 uppercase tracking-wide">
                   {p.label}
                 </h2>
@@ -93,7 +93,7 @@ export default function DocteurPage() {
       {/* Q&A */}
       <section className="section-padding bg-gray-50">
         <div className="container-max">
-          <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-10">
+          <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-10">
             Qui est le Docteur Digital ?
           </p>
           <div className="max-w-3xl space-y-12">

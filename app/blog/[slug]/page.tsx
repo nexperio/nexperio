@@ -67,7 +67,7 @@ export default async function BlogPostPage({
       <section className="section-padding bg-white border-b border-gray-100">
         <div className="container-max max-w-3xl">
           <div className="flex items-center gap-3 mb-6">
-            <Link href="/blog" className="font-heading text-sm text-gray-400 hover:text-brand-pink transition-colors">
+            <Link href="/blog" className="font-heading text-sm text-gray-400 hover:text-brand-orange transition-colors">
               ← Blog
             </Link>
             {post.category_names?.map((cat: string) => (
@@ -102,7 +102,7 @@ export default async function BlogPostPage({
         <div className="container-max max-w-3xl">
           {post.content ? (
             <div
-              className="prose prose-lg prose-headings:font-heading prose-headings:font-bold prose-a:text-brand-blue prose-a:no-underline hover:prose-a:text-brand-pink max-w-none"
+              className="prose prose-lg prose-headings:font-heading prose-headings:font-bold prose-a:text-brand-blue prose-a:no-underline hover:prose-a:text-brand-orange max-w-none"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           ) : (

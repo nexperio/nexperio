@@ -6,8 +6,14 @@
 
 @layer base {
   :root {
-    --brand-pink: #F28FE0;
-    --brand-blue: #2F54DD;
+    --brand-orange: #ff6600;
+    --brand-orange-light: #fcc01e;
+    --brand-navy: #153d64;
+    --brand-aqua: #9dd69c;
+    --brand-sage: #59806e;
+    --brand-blue: #4376bd;
+    --brand-mauve: #a02b93;
+    --brand-slate: #718fa2;
   }
 
   html {
@@ -27,7 +33,7 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-block bg-black text-white font-heading font-semibold px-8 py-4 text-sm tracking-widest uppercase hover:bg-brand-pink hover:text-black transition-all duration-300;
+    @apply inline-block bg-brand-orange text-white font-heading font-semibold px-8 py-4 text-sm tracking-widest uppercase hover:bg-brand-orange-light hover:text-black transition-all duration-300;
   }
 
   .btn-outline {
@@ -43,7 +49,7 @@
   }
 
   .highlight-pink {
-    @apply text-brand-pink;
+    @apply text-brand-orange;
   }
 
   .highlight-blue {
@@ -51,6 +57,6 @@
   }
 
   .tag {
-    @apply inline-block text-xs font-heading font-semibold tracking-widest uppercase px-3 py-1 bg-brand-pink/20 text-brand-pink border border-brand-pink/30;
+    @apply inline-block text-xs font-heading font-semibold tracking-widest uppercase px-3 py-1 bg-brand-orange/20 text-brand-orange border border-brand-orange/30;
   }
 }

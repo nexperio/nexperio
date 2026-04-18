@@ -48,11 +48,11 @@ export default async function BlogPage() {
       {/* Hero */}
       <section className="section-padding bg-white border-b border-gray-100">
         <div className="container-max">
-          <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-4">
+          <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
             Le blog du Docteur Digital
           </p>
           <h1 className="font-heading font-bold text-5xl md:text-6xl leading-tight">
-            Nos dernières <span className="text-brand-pink">piqûres de rappel</span>
+            Nos dernières <span className="text-brand-orange">piqûres de rappel</span>
           </h1>
         </div>
       </section>
@@ -64,7 +64,7 @@ export default async function BlogPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="tag border-brand-pink/50 text-brand-pink bg-brand-pink/10">
+                  <span className="tag border-brand-orange/50 text-brand-orange bg-brand-orange/10">
                     Article vedette
                   </span>
                   {featured.category_names?.map((cat: string) => (
@@ -92,7 +92,7 @@ export default async function BlogPage() {
                 </Link>
               </div>
               <div className="bg-gray-900 p-10 border border-gray-700">
-                <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-4">
+                <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
                   💉 Prescription du Docteur
                 </p>
                 <p className="font-heading text-white font-bold text-xl leading-relaxed">
@@ -111,14 +111,14 @@ export default async function BlogPage() {
           <div className="container-max">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {rest.map((post: any) => (
-                <article key={post.id} className="bg-white border border-gray-100 hover:border-brand-pink transition-colors duration-300 group">
+                <article key={post.id} className="bg-white border border-gray-100 hover:border-brand-orange transition-colors duration-300 group">
                   <div className="p-8">
                     <div className="flex gap-2 mb-4 flex-wrap">
                       {post.category_names?.slice(0, 2).map((cat: string) => (
                         <span key={cat} className="tag text-xs">{cat}</span>
                       ))}
                     </div>
-                    <h3 className="font-heading font-bold text-xl leading-snug mb-4 group-hover:text-brand-pink transition-colors">
+                    <h3 className="font-heading font-bold text-xl leading-snug mb-4 group-hover:text-brand-orange transition-colors">
                       {post.title}
                     </h3>
                     <p className="font-heading text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
@@ -130,7 +130,7 @@ export default async function BlogPage() {
                       </span>
                       <Link
                         href={`/blog/${post.slug}`}
-                        className="font-heading text-sm font-semibold text-brand-blue hover:text-brand-pink transition-colors"
+                        className="font-heading text-sm font-semibold text-brand-blue hover:text-brand-orange transition-colors"
                       >
                         Lire →
                       </Link>

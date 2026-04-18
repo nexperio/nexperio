@@ -120,11 +120,11 @@ export default function TraitementsPage() {
       {/* Hero */}
       <section className="section-padding bg-white border-b border-gray-100">
         <div className="container-max">
-          <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-4">
+          <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
             La pharmacopée Nexperio
           </p>
           <h1 className="font-heading font-bold text-5xl md:text-6xl leading-tight max-w-3xl">
-            Nos traitements <span className="text-brand-pink">sur mesure</span>
+            Nos traitements <span className="text-brand-orange">sur mesure</span>
           </h1>
           <p className="font-heading text-xl text-gray-500 mt-6 max-w-2xl leading-relaxed">
             Pour recouvrer la santé de votre eCommerce, guérir votre expérience client et vous
@@ -157,7 +157,7 @@ export default function TraitementsPage() {
                   <ul className="space-y-2">
                     {step.items.map((item) => (
                       <li key={item} className="flex items-start gap-2 font-heading text-sm text-gray-600">
-                        <span className="text-brand-pink mt-0.5">→</span>
+                        <span className="text-brand-orange mt-0.5">→</span>
                         {item}
                       </li>
                     ))}

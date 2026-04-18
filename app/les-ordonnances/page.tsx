@@ -15,7 +15,7 @@ const resources = [
     description:
       'Pour tout comprendre de l\'ecommerce et revenir aux fondamentaux. Le guide complet du Docteur Digital.',
     tag: 'Guide',
-    color: 'border-brand-pink',
+    color: 'border-brand-orange',
   },
   {
     icon: '📖',
@@ -31,7 +31,7 @@ const resources = [
     description:
       'À mettre dans toutes les mains des ecommerçants pour ne plus tomber dans les pièges. Les erreurs fatales et comment les éviter.',
     tag: 'Livre blanc',
-    color: 'border-brand-pink',
+    color: 'border-brand-orange',
     featured: true,
   },
   {
@@ -50,11 +50,11 @@ export default function OrdonnancesPage() {
       {/* Hero */}
       <section className="section-padding bg-white border-b border-gray-100">
         <div className="container-max">
-          <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-4">
+          <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
             Ressources gratuites
           </p>
           <h1 className="font-heading font-bold text-5xl md:text-6xl leading-tight max-w-3xl">
-            Les ordonnances du <span className="text-brand-pink">Docteur Digital</span>
+            Les ordonnances du <span className="text-brand-orange">Docteur Digital</span>
           </h1>
           <p className="font-heading text-xl text-gray-500 mt-6 max-w-2xl leading-relaxed">
             Parce que l'e-commerce, sans cadrage médical, c'est comme une chirurgie sans anesthésie : douloureux et risqué.
@@ -72,7 +72,7 @@ export default function OrdonnancesPage() {
             {resources.map((r) => (
               <div
                 key={r.title}
-                className={`bg-white p-8 border-l-4 ${r.color} border-t border-r border-b border-gray-100 ${r.featured ? 'ring-2 ring-brand-pink/20' : ''} hover:shadow-md transition-shadow duration-300`}
+                className={`bg-white p-8 border-l-4 ${r.color} border-t border-r border-b border-gray-100 ${r.featured ? 'ring-2 ring-brand-orange/20' : ''} hover:shadow-md transition-shadow duration-300`}
               >
                 <div className="flex items-start justify-between mb-6">
                   <span className="text-4xl">{r.icon}</span>

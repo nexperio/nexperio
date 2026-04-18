@@ -46,11 +46,11 @@ export default function CasPage() {
       {/* Hero */}
       <section className="section-padding bg-white border-b border-gray-100">
         <div className="container-max">
-          <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-4">
+          <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
             Preuves cliniques
           </p>
           <h1 className="font-heading font-bold text-5xl md:text-6xl leading-tight max-w-3xl">
-            Nos <span className="text-brand-pink">cas de guérison</span>
+            Nos <span className="text-brand-orange">cas de guérison</span>
           </h1>
           <p className="font-heading text-xl text-gray-500 mt-6 max-w-2xl leading-relaxed">
             Nos études de cas vous permettent de comprendre notre expertise, quelques problématiques
@@ -68,13 +68,13 @@ export default function CasPage() {
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
               <div className="bg-black text-white p-8">
-                <p className="font-heading text-brand-pink text-xs tracking-widest uppercase mb-3">
+                <p className="font-heading text-brand-orange text-xs tracking-widest uppercase mb-3">
                   Contexte
                 </p>
                 <p className="font-heading text-gray-200 text-sm leading-relaxed">{c.context}</p>
               </div>
-              <div className="bg-brand-pink/10 border border-brand-pink/20 p-8">
-                <p className="font-heading text-brand-pink text-xs tracking-widest uppercase mb-3">
+              <div className="bg-brand-orange/10 border border-brand-orange/20 p-8">
+                <p className="font-heading text-brand-orange text-xs tracking-widest uppercase mb-3">
                   Enjeu vital
                 </p>
                 <p className="font-heading text-gray-800 text-sm leading-relaxed">{c.challenge}</p>
@@ -91,11 +91,11 @@ export default function CasPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               {c.treatment.map((t) => (
                 <div key={t.step} className="bg-white border border-gray-100 p-6">
-                  <h3 className="font-heading font-bold text-base mb-4 text-brand-pink">{t.step}</h3>
+                  <h3 className="font-heading font-bold text-base mb-4 text-brand-orange">{t.step}</h3>
                   <ul className="space-y-2">
                     {t.items.map((item) => (
                       <li key={item} className="flex items-start gap-2 font-heading text-sm text-gray-600">
-                        <span className="text-brand-pink mt-0.5 shrink-0">→</span>
+                        <span className="text-brand-orange mt-0.5 shrink-0">→</span>
                         {item}
                       </li>
                     ))}
@@ -106,13 +106,13 @@ export default function CasPage() {
 
             {/* Results */}
             <div className="bg-black text-white p-8">
-              <p className="font-heading text-brand-pink text-xs tracking-widest uppercase mb-6">
+              <p className="font-heading text-brand-orange text-xs tracking-widest uppercase mb-6">
                 4. Résultats cliniques
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {c.results.map((r) => (
                   <div key={r} className="text-center">
-                    <p className="font-heading font-bold text-brand-pink text-2xl mb-2">
+                    <p className="font-heading font-bold text-brand-orange text-2xl mb-2">
                       {r.split(' ')[0]}
                     </p>
                     <p className="font-heading text-gray-300 text-xs leading-relaxed">

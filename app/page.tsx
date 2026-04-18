@@ -39,23 +39,44 @@ export default function HomePage() {
       <section className="min-h-[90vh] flex flex-col justify-center section-padding bg-white">
         <div className="container-max">
           <div className="max-w-4xl">
-            <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-6">
+            <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-6">
               Bienvenue à la clinique nexperio
             </p>
             <h1 className="font-heading font-bold text-5xl md:text-7xl leading-[1.05] mb-8">
               Je ne fais pas du conseil.{' '}
-              <span className="text-brand-pink">Je soigne.</span>
+              <span className="text-brand-orange">Je soigne.</span>
             </h1>
             <p className="font-heading text-xl md:text-2xl text-gray-600 mb-4 max-w-2xl leading-relaxed">
               Trafic qui stagne. Conversions qui patinent. Clients qui décrochent.
             </p>
-            <p className="font-heading text-lg text-gray-500 mb-10 max-w-2xl leading-relaxed">
+            <p className="font-heading text-lg text-gray-500 mb-8 max-w-2xl leading-relaxed">
               L'e-commerce est un organisme vivant. Quand il va mal, il faut plus qu'un
               "avis". Il faut un diagnostic. Et un vrai traitement.
             </p>
+            <div className="mb-10 max-w-2xl border-l-4 border-brand-orange pl-6">
+              <p className="font-heading text-base text-gray-700 mb-4">
+                C'est mon métier. Je suis le Docteur Digital. J'analyse, je soigne, je renforce :
+              </p>
+              <ul className="space-y-2">
+                {[
+                  'Votre stratégie e-commerce',
+                  'Votre expérience client',
+                  'Vos leviers de conversion et de fidélisation',
+                  'Vos usages de l'IA (webinaires, workshops, intégration opérationnelle)',
+                ].map((item) => (
+                  <li key={item} className="font-heading text-sm text-gray-600 flex items-start gap-2">
+                    <span className="text-brand-orange font-bold mt-0.5">→</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="font-heading text-sm text-gray-700 mt-4 font-medium">
+                Vous voulez remettre votre business en pleine forme ?
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/rdv" className="btn-primary">
-                Demander une consultation
+                Prendre rendez-vous pour une consultation
               </Link>
               <Link href="/les-traitements" className="btn-outline">
                 Voir les traitements
@@ -71,7 +92,7 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="font-heading font-bold text-2xl md:text-3xl leading-relaxed text-black">
               L'e-commerce n'est pas une science molle.{' '}
-              <span className="text-brand-pink">C'est une discipline exigeante.</span>{' '}
+              <span className="text-brand-orange">C'est une discipline exigeante.</span>{' '}
               Technique. Stratégique. Opérationnelle.
             </p>
             <p className="font-heading text-gray-500 text-lg mt-6 leading-relaxed">
@@ -87,12 +108,12 @@ export default function HomePage() {
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-4">
+              <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
                 La priorité absolue
               </p>
               <h2 className="font-heading font-bold text-4xl md:text-5xl leading-tight mb-6">
                 L'expérience client n'est pas un sujet annexe.{' '}
-                <span className="text-brand-pink">C'est LE sujet.</span>
+                <span className="text-brand-orange">C'est LE sujet.</span>
               </h2>
               <p className="font-heading text-gray-600 text-lg leading-relaxed mb-6">
                 Chaque point de contact doit nourrir la relation. Et chaque relation bien
@@ -104,7 +125,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="bg-black text-white p-10">
-              <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-6">
+              <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-6">
                 💉 Mon rôle
               </p>
               {[
@@ -114,14 +135,14 @@ export default function HomePage() {
                 'Optimiser chaque clic, chaque étape',
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 mb-4">
-                  <span className="text-brand-pink font-heading font-bold text-lg mt-0.5">→</span>
+                  <span className="text-brand-orange font-heading font-bold text-lg mt-0.5">→</span>
                   <p className="font-heading text-gray-200">{item}</p>
                 </div>
               ))}
               <div className="mt-8 pt-8 border-t border-gray-700">
                 <p className="font-heading font-bold text-xl text-white">
                   Des visiteurs qui comprennent.{' '}
-                  <span className="text-brand-pink">Des clients qui achètent.</span>{' '}
+                  <span className="text-brand-orange">Des clients qui achètent.</span>{' '}
                   Des utilisateurs qui reviennent.
                 </p>
               </div>
@@ -134,19 +155,19 @@ export default function HomePage() {
       <section className="section-padding bg-gray-50">
         <div className="container-max">
           <div className="text-center mb-16">
-            <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-4">
+            <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
               Nos traitements
             </p>
             <h2 className="font-heading font-bold text-4xl md:text-5xl">
               Des traitements ciblés pour des{' '}
-              <span className="text-brand-pink">résultats mesurables</span>
+              <span className="text-brand-orange">résultats mesurables</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((s) => (
-              <div key={s.tag} className="bg-white p-8 border border-gray-100 hover:border-brand-pink transition-colors duration-300 group">
+              <div key={s.tag} className="bg-white p-8 border border-gray-100 hover:border-brand-orange transition-colors duration-300 group">
                 <span className="tag mb-4 inline-block">{s.tag}</span>
-                <h3 className="font-heading font-bold text-xl mb-4 group-hover:text-brand-pink transition-colors">
+                <h3 className="font-heading font-bold text-xl mb-4 group-hover:text-brand-orange transition-colors">
                   {s.title}
                 </h3>
                 <p className="font-heading text-gray-600 text-sm leading-relaxed mb-6">
@@ -157,7 +178,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href={s.href}
-                  className="font-heading text-sm font-semibold tracking-wide text-brand-blue hover:text-brand-pink transition-colors"
+                  className="font-heading text-sm font-semibold tracking-wide text-brand-blue hover:text-brand-orange transition-colors"
                 >
                   Voir le traitement →
                 </Link>
@@ -171,7 +192,7 @@ export default function HomePage() {
       <section className="section-padding bg-white">
         <div className="container-max">
           <div className="text-center mb-12">
-            <p className="font-heading text-brand-pink text-sm tracking-widest uppercase">
+            <p className="font-heading text-brand-orange text-sm tracking-widest uppercase">
               Nos cas de guérison
             </p>
           </div>

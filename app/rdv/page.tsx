@@ -10,19 +10,19 @@ export default function RdvPage() {
   return (
     <section className="section-padding bg-white min-h-[80vh] flex flex-col justify-center">
       <div className="container-max max-w-2xl text-center">
-        <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-6">
+        <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-6">
           Diagnostic offert
         </p>
         <h1 className="font-heading font-bold text-4xl md:text-5xl leading-tight mb-6">
           Prenez rendez-vous avec le{' '}
-          <span className="text-brand-pink">Docteur Digital</span>
+          <span className="text-brand-orange">Docteur Digital</span>
         </h1>
         <p className="font-heading text-xl text-gray-500 leading-relaxed mb-12">
           Le diagnostic initial est offert. Parlez-moi de votre business, je vous prescris
           le traitement adapté.
         </p>
         <div className="bg-gray-50 border border-gray-100 p-10 text-left">
-          <p className="font-heading text-brand-pink text-sm tracking-widest uppercase mb-6">
+          <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-6">
             Formulaire de contact
           </p>
           <form className="space-y-6" action="mailto:ag@nexperio.com" method="get">
@@ -34,7 +34,7 @@ export default function RdvPage() {
                 type="text"
                 name="name"
                 required
-                className="w-full border border-gray-200 px-4 py-3 font-heading text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                className="w-full border border-gray-200 px-4 py-3 font-heading text-sm focus:outline-none focus:border-brand-orange transition-colors"
                 placeholder="Arnaud Guedj"
               />
             </div>
@@ -46,7 +46,7 @@ export default function RdvPage() {
                 type="email"
                 name="email"
                 required
-                className="w-full border border-gray-200 px-4 py-3 font-heading text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                className="w-full border border-gray-200 px-4 py-3 font-heading text-sm focus:outline-none focus:border-brand-orange transition-colors"
                 placeholder="vous@entreprise.com"
               />
             </div>
@@ -57,7 +57,7 @@ export default function RdvPage() {
               <input
                 type="text"
                 name="company"
-                className="w-full border border-gray-200 px-4 py-3 font-heading text-sm focus:outline-none focus:border-brand-pink transition-colors"
+                className="w-full border border-gray-200 px-4 py-3 font-heading text-sm focus:outline-none focus:border-brand-orange transition-colors"
                 placeholder="Nexperio SAS"
               />
             </div>
@@ -69,7 +69,7 @@ export default function RdvPage() {
                 name="body"
                 required
                 rows={5}
-                className="w-full border border-gray-200 px-4 py-3 font-heading text-sm focus:outline-none focus:border-brand-pink transition-colors resize-none"
+                className="w-full border border-gray-200 px-4 py-3 font-heading text-sm focus:outline-none focus:border-brand-orange transition-colors resize-none"
                 placeholder="Mon e-commerce stagne, mes conversions baissent, je ne sais pas par où commencer..."
               />
             </div>

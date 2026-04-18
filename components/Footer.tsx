@@ -8,15 +8,18 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <Link href="/" className="font-heading font-bold text-2xl">
-              <span className="text-white">nex</span>
-              <span className="text-brand-pink">perio</span>
+            <Link href="/" className="flex items-center">
+              <img
+                src="https://static.wixstatic.com/media/7f7a19_cb6f7b8ea71744a99a2e93d5640ef57e~mv2.png"
+                alt="Nexperio"
+                className="h-12 w-auto object-contain"
+              />
             </Link>
             <p className="mt-4 text-gray-400 text-sm leading-relaxed font-heading">
               "Je ne fais pas du conseil.<br />
               Je soigne."
             </p>
-            <p className="mt-2 text-brand-pink text-sm font-heading font-semibold tracking-wide">
+            <p className="mt-2 text-brand-orange text-sm font-heading font-semibold tracking-wide">
               — Le Docteur Digital
             </p>
           </div>
@@ -37,7 +40,7 @@ export default function Footer() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm text-gray-300 hover:text-brand-pink transition-colors font-heading"
+                  className="text-sm text-gray-300 hover:text-brand-orange transition-colors font-heading"
                 >
                   {item.label}
                 </Link>

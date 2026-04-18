@@ -10,14 +10,16 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          pink: '#F28FE0',
-          'pink-light': '#FFB8F2',
-          'pink-dark': '#B86CAA',
-          blue: '#2F54DD',
-          'blue-light': '#A2EED5',
+          orange: '#ff6600',
+          'orange-light': '#fcc01e',
+          navy: '#153d64',
+          aqua: '#9dd69c',
+          sage: '#59806e',
+          blue: '#4376bd',
+          mauve: '#a02b93',
+          slate: '#718fa2',
           black: '#000000',
           white: '#FFFFFF',
-          gray: '#727272',
         },
       },
       fontFamily: {
@@ -31,7 +33,7 @@ const config: Config = {
         'h3': ['1.5rem', { lineHeight: '1.3', fontWeight: '600' }],
       },
       backgroundImage: {
-        'gradient-brand': 'linear-gradient(135deg, #F28FE0 0%, #2F54DD 100%)',
+        'gradient-brand': 'linear-gradient(135deg, #ff6600 0%, #153d64 100%)',
       },
     },
   },

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
 const navItems = [
@@ -20,9 +21,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
-          <Link href="/" className="font-heading font-bold text-xl tracking-tight">
-            <span className="text-black">nex</span>
-            <span className="text-brand-pink">perio</span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="https://static.wixstatic.com/media/7f7a19_cb6f7b8ea71744a99a2e93d5640ef57e~mv2.png"
+              alt="Nexperio — Le Docteur Digital"
+              width={80}
+              height={90}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
@@ -31,7 +38,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="font-heading text-sm font-medium text-black hover:text-brand-pink transition-colors duration-200 tracking-wide"
+                className="font-heading text-sm font-medium text-black hover:text-brand-orange transition-colors duration-200 tracking-wide"
               >
                 {item.label}
               </Link>
@@ -66,7 +73,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="font-heading text-base font-medium text-black hover:text-brand-pink transition-colors"
+                className="font-heading text-base font-medium text-black hover:text-brand-orange transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
