@@ -4,14 +4,8 @@ import { notFound } from 'next/navigation'
 import { getBlogPost, getBlogPosts } from '@/lib/supabase'
 import CTASection from '@/components/CTASection'
 
-export async function generateStaticParams() {
-  try {
-    const posts = await getBlogPosts()
-    return posts.map((post: any) => ({ slug: post.slug }))
-  } catch {
-    return []
-  }
-}
+// Pages are generated on-demand (ISR) — no static params needed at build time
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({
   params,
@@ -37,6 +31,18 @@ function formatDate(dateStr: string) {
   })
 }
 
+// Fallback post used when Supabase is not yet configured
+const FALLBACK_POST = {
+  id: '1',
+  title: 'E-commerce : Et si votre croissance était freinée par l\'un de ces 7 pièges invisibles ?',
+  slug: 'e-commerce-et-si-votre-croissance-etait-freinee-par-les-7-pieges',
+  excerpt: 'Le marché e-commerce français a atteint un point de bascule. En 2025, l\'accélération ne suffit plus.',
+  content: '<p>Contenu disponible après configuration de Supabase.</p>',
+  first_published_at: '2025-04-17T15:15:09.125Z',
+  minutes_to_read: 2,
+  category_names: ['E-commerce', 'Stratégie'],
+}
+
 export default async function BlogPostPage({
   params,
 }: {
@@ -47,18 +53,9 @@ export default async function BlogPostPage({
   try {
     post = await getBlogPost(params.slug)
   } catch {
-    // Fallback for preview
-    if (params.slug.startsWith('e-commerce')) {
-      post = {
-        id: '1',
-        title: 'E-commerce : Et si votre croissance était freinée par l\'un de ces 7 pièges invisibles ?',
-        slug: params.slug,
-        excerpt: 'Le marché e-commerce français a atteint un point de bascule. En 2025, l\'accélération ne suffit plus.',
-        content: '<p>Contenu de l\'article disponible après configuration Supabase.</p>',
-        first_published_at: '2025-04-17T15:15:09.125Z',
-        minutes_to_read: 2,
-        category_names: ['E-commerce', 'Stratégie'],
-      }
+    // Supabase not configured or post not found — use fallback for known slugs
+    if (params.slug.includes('e-commerce') || params.slug.includes('7-pieges')) {
+      post = FALLBACK_POST
     }
   }
 

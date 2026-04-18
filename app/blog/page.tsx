@@ -3,10 +3,26 @@ import Link from 'next/link'
 import { getBlogPosts } from '@/lib/supabase'
 import CTASection from '@/components/CTASection'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Blog',
   description: 'Les dernières piqûres de rappel du Docteur Digital. E-commerce, expérience client, IA.',
 }
+
+const FALLBACK_POSTS = [
+  {
+    id: '1',
+    title: 'E-commerce : Et si votre croissance était freinée par l\'un de ces 7 pièges invisibles ?',
+    slug: 'e-commerce-et-si-votre-croissance-etait-freinee-par-les-7-pieges',
+    excerpt:
+      'Le marché e-commerce français a atteint un point de bascule. En 2025, l\'accélération ne suffit plus : il faut de la précision, de la résilience et une expérience client irréprochable.',
+    first_published_at: '2025-04-17T15:15:09.125Z',
+    featured: true,
+    minutes_to_read: 2,
+    category_names: ['E-commerce', 'Stratégie'],
+  },
+]
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('fr-FR', {
@@ -21,20 +37,7 @@ export default async function BlogPage() {
   try {
     posts = await getBlogPosts()
   } catch {
-    // Fallback posts for static preview / before Supabase setup
-    posts = [
-      {
-        id: '1',
-        title: 'E-commerce : Et si votre croissance était freinée par l\'un de ces 7 pièges invisibles ?',
-        slug: 'e-commerce-et-si-votre-croissance-etait-refreinee-par-les-7-pieges',
-        excerpt:
-          'Le marché e-commerce français a atteint un point de bascule. En 2025, l\'accélération ne suffit plus : il faut de la précision, de la résilience et une expérience client irréprochable.',
-        first_published_at: '2025-04-17T15:15:09.125Z',
-        featured: true,
-        minutes_to_read: 2,
-        category_names: ['E-commerce', 'Stratégie'],
-      },
-    ]
+    posts = FALLBACK_POSTS
   }
 
   const featured = posts.find((p: any) => p.featured) || posts[0]
