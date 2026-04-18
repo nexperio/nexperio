@@ -62,7 +62,7 @@ export default function HomePage() {
                   'Votre stratégie e-commerce',
                   'Votre expérience client',
                   'Vos leviers de conversion et de fidélisation',
-                  'Vos usages de l'IA (webinaires, workshops, intégration opérationnelle)',
+                  "Vos usages de l'IA (webinaires, workshops, intégration opérationnelle)",
                 ].map((item) => (
                   <li key={item} className="font-heading text-sm text-gray-600 flex items-start gap-2">
                     <span className="text-brand-orange font-bold mt-0.5">→</span>
