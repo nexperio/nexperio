@@ -59,7 +59,7 @@ export default async function BlogPage() {
 
       {/* Featured post */}
       {featured && (
-        <section className="section-padding bg-black text-white">
+        <section className="section-padding bg-brand-navy text-white">
           <div className="container-max">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>

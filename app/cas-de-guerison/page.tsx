@@ -67,7 +67,7 @@ export default function CasPage() {
               {c.title}
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-              <div className="bg-black text-white p-8">
+              <div className="bg-brand-navy text-white p-8">
                 <p className="font-heading text-brand-orange text-xs tracking-widest uppercase mb-3">
                   Contexte
                 </p>
@@ -105,7 +105,7 @@ export default function CasPage() {
             </div>
 
             {/* Results */}
-            <div className="bg-black text-white p-8">
+            <div className="bg-brand-navy text-white p-8">
               <p className="font-heading text-brand-orange text-xs tracking-widest uppercase mb-6">
                 4. Résultats cliniques
               </p>

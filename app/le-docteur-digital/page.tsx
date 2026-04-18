@@ -50,7 +50,7 @@ export default function DocteurPage() {
   return (
     <>
       {/* Hero */}
-      <section className="section-padding bg-black text-white">
+      <section className="section-padding bg-brand-navy text-white">
         <div className="container-max">
           <div className="max-w-3xl">
             <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-6">
@@ -99,7 +99,7 @@ export default function DocteurPage() {
           <div className="max-w-3xl space-y-12">
             {qa.map(({ q, a }) => (
               <div key={q}>
-                <h3 className="font-heading font-bold text-xl mb-4 text-black">{q}</h3>
+                <h3 className="font-heading font-bold text-xl mb-4 text-brand-navy">{q}</h3>
                 <p className="font-heading text-gray-600 leading-relaxed">{a}</p>
               </div>
             ))}

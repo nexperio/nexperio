@@ -90,7 +90,7 @@ export default function HomePage() {
       <section className="section-padding bg-gray-50 border-y border-gray-100">
         <div className="container-max">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="font-heading font-bold text-2xl md:text-3xl leading-relaxed text-black">
+            <p className="font-heading font-bold text-2xl md:text-3xl leading-relaxed text-brand-navy">
               L'e-commerce n'est pas une science molle.{' '}
               <span className="text-brand-orange">C'est une discipline exigeante.</span>{' '}
               Technique. Stratégique. Opérationnelle.
@@ -124,7 +124,7 @@ export default function HomePage() {
                 du client… Vous perdez des ventes. Et vous ne le saurez peut-être jamais.
               </p>
             </div>
-            <div className="bg-black text-white p-10">
+            <div className="bg-brand-navy text-white p-10">
               <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-6">
                 💉 Mon rôle
               </p>
@@ -197,7 +197,7 @@ export default function HomePage() {
             </p>
           </div>
           <blockquote className="max-w-3xl mx-auto text-center">
-            <p className="font-heading font-bold text-2xl md:text-3xl leading-relaxed text-black mb-8">
+            <p className="font-heading font-bold text-2xl md:text-3xl leading-relaxed text-brand-navy mb-8">
               « {testimonial.quote} »
             </p>
             <footer>

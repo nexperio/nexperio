@@ -38,7 +38,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="font-heading text-sm font-medium text-black hover:text-brand-orange transition-colors duration-200 tracking-wide"
+                className="font-heading text-sm font-medium text-brand-navy hover:text-brand-orange transition-colors duration-200 tracking-wide"
               >
                 {item.label}
               </Link>
@@ -58,9 +58,9 @@ export default function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
           >
-            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-brand-navy transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-brand-navy transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-brand-navy transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
           </button>
         </div>
       </div>
@@ -73,7 +73,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="font-heading text-base font-medium text-black hover:text-brand-orange transition-colors"
+                className="font-heading text-base font-medium text-brand-navy hover:text-brand-orange transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}

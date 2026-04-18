@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function CTASection() {
   return (
-    <section className="bg-black text-white section-padding">
+    <section className="bg-brand-navy text-white section-padding">
       <div className="container-max text-center">
         <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
           Diagnostic offert
