@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-pink: #F28FE0;
+    --brand-blue: #2F54DD;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Prompt', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block bg-black text-white font-heading font-semibold px-8 py-4 text-sm tracking-widest uppercase hover:bg-brand-pink hover:text-black transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply inline-block border-2 border-black text-black font-heading font-semibold px-8 py-4 text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-all duration-300;
+  }
+
+  .section-padding {
+    @apply px-6 py-20 md:px-12 lg:px-24;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .highlight-pink {
+    @apply text-brand-pink;
+  }
+
+  .highlight-blue {
+    @apply text-brand-blue;
+  }
+
+  .tag {
+    @apply inline-block text-xs font-heading font-semibold tracking-widest uppercase px-3 py-1 bg-brand-pink/20 text-brand-pink border border-brand-pink/30;
+  }
+}
