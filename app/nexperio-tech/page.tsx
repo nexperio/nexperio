@@ -309,9 +309,13 @@ export default function NexperioTechPage() {
             >
               {TOOLS.map((t) => {
                 const live = 'href' in t && (t as { href?: string }).href
+                const target = live || t.legacy
                 return (
-                  <div
+                  <a
                     key={t.slug}
+                    href={target}
+                    target="_blank"
+                    rel="noreferrer"
                     className="card"
                     style={{ display: 'flex', flexDirection: 'column' }}
                   >
@@ -350,22 +354,18 @@ export default function NexperioTechPage() {
                     >
                       {t.body}
                     </p>
-                    {live ? (
-                      <div
-                        style={{
-                          paddingTop: 24,
-                          borderTop: '1px solid var(--line)',
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          gap: 12,
-                          flexWrap: 'wrap',
-                        }}
-                      >
-                        <a
-                          href={live}
-                          target="_blank"
-                          rel="noreferrer"
+                    <div
+                      style={{
+                        paddingTop: 24,
+                        borderTop: '1px solid var(--line)',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        gap: 12,
+                      }}
+                    >
+                      {live ? (
+                        <span
                           style={{
                             fontFamily: "'Prompt', sans-serif",
                             fontSize: 13,
@@ -375,39 +375,13 @@ export default function NexperioTechPage() {
                             color: 'var(--orange)',
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: 6,
+                            gap: 8,
                           }}
                         >
-                          <span
-                            className="pulse-dot"
-                            style={{ width: 6, height: 6 }}
-                          />
+                          <span className="pulse-dot" style={{ width: 6, height: 6 }} />
                           Lancer →
-                        </a>
-                        <a
-                          href={t.legacy}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{
-                            fontFamily: "'JetBrains Mono', monospace",
-                            fontSize: 11,
-                            color: 'var(--ink-mute)',
-                          }}
-                        >
-                          v1 (Wix)
-                        </a>
-                      </div>
-                    ) : (
-                      <div
-                        style={{
-                          paddingTop: 24,
-                          borderTop: '1px solid var(--line)',
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          gap: 12,
-                        }}
-                      >
+                        </span>
+                      ) : (
                         <span
                           style={{
                             fontFamily: "'JetBrains Mono', monospace",
@@ -419,25 +393,19 @@ export default function NexperioTechPage() {
                         >
                           Réhébergement en cours
                         </span>
-                        <a
-                          href={t.legacy}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{
-                            fontFamily: "'Prompt', sans-serif",
-                            fontSize: 12,
-                            fontWeight: 600,
-                            letterSpacing: '0.05em',
-                            textTransform: 'uppercase',
-                            color: 'var(--orange)',
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          v1 →
-                        </a>
-                      </div>
-                    )}
-                  </div>
+                      )}
+                      <span
+                        style={{
+                          fontFamily: "'JetBrains Mono', monospace",
+                          fontSize: 11,
+                          color: 'var(--ink-mute)',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {live ? new URL(target).hostname : 'v1 (Wix)'}
+                      </span>
+                    </div>
+                  </a>
                 )
               })}
             </div>
