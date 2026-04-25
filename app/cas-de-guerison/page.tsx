@@ -1,140 +1,406 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import CTASection from '@/components/CTASection'
+import { Reveal } from '@/components/Reveal'
 
 export const metadata: Metadata = {
   title: 'Cas de guérison',
   description:
-    'Études de cas Nexperio : transformation digitale, eCommerce, expérience client. Des résultats concrets, mesurés.',
+    'Études de cas concrètes : du transactionnel au relationnel, transformation digitale d’une marque de mode. Méthode et résultats du Docteur Digital.',
 }
 
-const cases = [
+const CASES = [
   {
-    title: 'Du transactionnel au relationnel : comment passer d\'un site de vente à une vraie marque engagée',
+    num: '01',
+    tag: 'Electronique · B2B',
+    title: 'Du transactionnel au relationnel',
+    subtitle: 'Comment passer d’un site de vente à une vraie marque engagée',
     context:
-      'Un e-commerçant spécialisé en équipements électroniques. Objectif : sortir du simple modèle transactionnel pour bâtir une relation durable avec ses clients stratégiques.',
+      "Un acteur e-commerce spécialisé en équipement électronique cherche à passer d'un modèle transactionnel à une relation durable avec ses clients stratégiques.",
     challenge:
-      'Développer l\'engagement et la valeur des clients existants. Créer une véritable proximité avec les segments prioritaires.',
-    treatment: [
-      { step: '1. Diagnostic', items: ['Analyse poussée des segments clients', 'Cartographie des moments-clés du parcours', 'Identification des leviers d\'engagement différenciants'] },
-      { step: '2. Prescription', items: ['Refonte des parcours par segment', 'Personnalisation fine des campagnes et du merchandising', 'Création d\'expériences sur-mesure par cible', 'Conception de programmes de fidélisation innovants'] },
-      { step: '3. Mise en œuvre', items: ['Formation des équipes à cette nouvelle approche relationnelle', 'Batteries de tests A/B continus', 'Optimisation itérative des parcours'] },
+      "Développer l'engagement et la valeur des clients existants. Créer une véritable proximité avec les segments prioritaires.",
+    steps: [
+      {
+        label: 'Diagnostic',
+        body:
+          "Analyse approfondie des segments clients, cartographie des moments-clés du parcours, identification des leviers de différenciation.",
+      },
+      {
+        label: 'Prescription',
+        body:
+          "Refonte des parcours par segment, personnalisation fine des campagnes, expériences sur-mesure, enrichissement de l'offre, programme de fidélité repensé.",
+      },
+      {
+        label: 'Exécution',
+        body:
+          "Formation des équipes, A/B testing continu, optimisation itérative.",
+      },
     ],
-    results: ['+120 % d\'inscriptions clients (vs N-1)', '+25 % de taux de conversion', '+20 % de taux de retour visiteurs', 'Objectif NPS dépassé (+18 %)'],
-    conclusion:
-      'Pas de recette miracle. Des tests, des ajustements, de la rigueur. Mais au final : une progression nette sur tous les KPIs vitaux — preuve qu\'un modèle relationnel bien piloté crée bien plus qu\'une simple vente : il construit la fidélité et la préférence de marque.',
+    results: [
+      { value: '+120%', label: 'inscriptions clients (vs N-1)' },
+      { value: '+25%', label: 'taux de conversion' },
+      { value: '+20%', label: 'taux de visiteurs récurrents' },
+      { value: '+18%', label: 'NPS — objectif dépassé' },
+    ],
+    closer: 'Pas de recette miracle. Des tests, des ajustements, de la rigueur.',
   },
   {
-    title: 'Transformation digitale d\'une marque de mode : quand le social booste l\'e-commerce',
+    num: '02',
+    tag: 'Mode · DTC',
+    title: 'Transformation digitale d’une marque de mode',
+    subtitle: 'Quand le social booste l’e-commerce',
     context:
-      'Une marque de chaussures mode avec une forte audience sur les réseaux… mais des ventes en ligne décevantes. Le trafic était là, pas la conversion.',
+      "Une marque de chaussures avec une forte audience sur les réseaux sociaux mais des ventes en ligne décevantes : trafic présent, conversion absente.",
     challenge:
-      'Aligner l\'expérience client entre les réseaux sociaux, le site e-commerce et les points de vente. Faire levier sur le potentiel social pour générer du chiffre.',
-    treatment: [
-      { step: '1. Diagnostic', items: ['Audit complet de la stratégie digitale existante', 'Écoute des objectifs stratégiques', 'Analyse des leviers d\'influence et du parcours client omnicanal'] },
-      { step: '2. Prescription', items: ['Refonte de l\'architecture e-commerce', 'Intégration fluide du contenu social dans le parcours d\'achat', 'Harmonisation et enrichissement des données produits', 'Unification des bases CRM'] },
-      { step: '3. Mise en œuvre', items: ['Formation des équipes aux nouveaux outils', 'Optimisation du merchandising digital', 'Pilotage data-driven des réassorts'] },
+      "Aligner l'expérience client entre les réseaux sociaux, le site e-commerce et les points de vente.",
+    steps: [
+      {
+        label: 'Diagnostic',
+        body:
+          "Audit complet de la stratégie digitale, évaluation des objectifs, analyse de l'influence omnicanale et du parcours client.",
+      },
+      {
+        label: 'Prescription',
+        body:
+          "Refonte de l'architecture e-commerce, intégration du contenu social dans le parcours d'achat, harmonisation des données produits, unification CRM.",
+      },
+      {
+        label: 'Exécution',
+        body:
+          "Formation des équipes aux nouveaux outils, optimisation du merchandising digital, gestion des stocks orientée data.",
+      },
     ],
-    results: ['+100 % de rendez-vous en pop-up stores', '+35 % de ventes en 6 mois, à budget marketing constant', 'Stocks optimisés grâce à l\'analyse prédictive'],
-    conclusion:
-      'Le traitement a porté ses fruits : +100 % de rendez-vous en pop-up stores, +35 % de ventes en seulement 6 mois sans augmenter le budget marketing. Un bel exemple de synergie entre contenu social, e-commerce et retail physique.',
+    results: [
+      { value: '+100%', label: 'rendez-vous en pop-up store' },
+      { value: '+35%', label: 'ventes en 6 mois (budget marketing constant)' },
+      { value: '↓', label: 'stocks optimisés (analyse prédictive)' },
+    ],
+    closer: 'Ne traitez pas les symptômes. Soignez la cause.',
   },
 ]
 
+const LOGOS = ['Bastille', 'DamsPro', 'Melissa', 'Queue-it', 'RLVNT']
+
 export default function CasPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="section-padding bg-white border-b border-gray-100">
-        <div className="container-max">
-          <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
-            Preuves cliniques
+    <div className="page-enter">
+      {/* Dark hero */}
+      <section
+        style={{
+          minHeight: '80vh',
+          display: 'flex',
+          alignItems: 'center',
+          paddingTop: 140,
+          paddingBottom: 80,
+          background: 'var(--navy-deep)',
+          color: '#fff',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.08,
+            pointerEvents: 'none',
+            backgroundImage:
+              'radial-gradient(circle at 20% 30%, #ff6600 0, transparent 50%), radial-gradient(circle at 80% 70%, #fcc01e 0, transparent 50%)',
+          }}
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <p className="eyebrow" style={{ color: '#ff6600', marginBottom: 32 }}>
+            <span className="pulse-dot" /> Patients guéris
           </p>
-          <h1 className="font-heading font-bold text-5xl md:text-6xl leading-tight max-w-3xl">
-            Nos <span className="text-brand-orange">cas de guérison</span>
+          <h1 className="display" style={{ color: '#fff', maxWidth: 1100, marginBottom: 32 }}>
+            Pas de recettes miracles. <br />
+            <span className="serif" style={{ color: '#fcc01e' }}>Des résultats mesurés.</span>
           </h1>
-          <p className="font-heading text-xl text-gray-500 mt-6 max-w-2xl leading-relaxed">
-            Nos études de cas vous permettent de comprendre notre expertise, quelques problématiques
-            traitées et notre méthode de travail.
+          <p
+            style={{
+              fontFamily: "'Prompt', sans-serif",
+              fontSize: 22,
+              color: 'rgba(255,255,255,0.7)',
+              maxWidth: 760,
+              lineHeight: 1.5,
+              marginBottom: 24,
+            }}
+          >
+            Nos études de cas vous permettent de comprendre notre expertise, quelques
+            problématiques traitées et notre méthode de travail.
+          </p>
+          <p
+            style={{
+              fontFamily: "'Instrument Serif', serif",
+              fontStyle: 'italic',
+              fontSize: 26,
+              color: '#fcc01e',
+            }}
+          >
+            « Ne traitez pas les symptômes. Soignez la cause. »
           </p>
         </div>
       </section>
 
-      {/* Cases */}
-      {cases.map((c, idx) => (
-        <section key={idx} className={`section-padding ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-          <div className="container-max">
-            <h2 className="font-heading font-bold text-2xl md:text-3xl mb-12 max-w-3xl leading-tight">
-              {c.title}
-            </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-              <div className="bg-brand-navy text-white p-8">
-                <p className="font-heading text-brand-orange text-xs tracking-widest uppercase mb-3">
-                  Contexte
-                </p>
-                <p className="font-heading text-gray-200 text-sm leading-relaxed">{c.context}</p>
-              </div>
-              <div className="bg-brand-orange/10 border border-brand-orange/20 p-8">
-                <p className="font-heading text-brand-orange text-xs tracking-widest uppercase mb-3">
-                  Enjeu vital
-                </p>
-                <p className="font-heading text-gray-800 text-sm leading-relaxed">{c.challenge}</p>
-              </div>
-              <div className="bg-brand-blue/5 border border-brand-blue/20 p-8">
-                <p className="font-heading text-brand-blue text-xs tracking-widest uppercase mb-3">
-                  Conclusion
-                </p>
-                <p className="font-heading text-gray-700 text-sm leading-relaxed">{c.conclusion}</p>
-              </div>
-            </div>
+      {/* Logos strip */}
+      <section
+        style={{
+          padding: '40px 0',
+          borderBottom: '1px solid var(--line)',
+          background: 'var(--bg)',
+        }}
+      >
+        <div className="container">
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: 56,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 11,
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'var(--ink-mute)',
+              }}
+            >
+              Ils nous ont fait confiance
+            </p>
+            {LOGOS.map((l) => (
+              <span
+                key={l}
+                style={{
+                  fontFamily: "'Prompt', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 18,
+                  color: 'var(--ink-soft)',
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                {l}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Treatment steps */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              {c.treatment.map((t) => (
-                <div key={t.step} className="bg-white border border-gray-100 p-6">
-                  <h3 className="font-heading font-bold text-base mb-4 text-brand-orange">{t.step}</h3>
-                  <ul className="space-y-2">
-                    {t.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 font-heading text-sm text-gray-600">
-                        <span className="text-brand-orange mt-0.5 shrink-0">→</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+      {/* Case studies */}
+      {CASES.map((c, idx) => (
+        <section
+          key={c.num}
+          className="section"
+          style={{ background: idx % 2 === 0 ? 'var(--bg)' : 'var(--bg-soft)' }}
+        >
+          <div className="container">
+            <Reveal>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'minmax(280px, 380px) 1fr',
+                  gap: 64,
+                  marginBottom: 64,
+                  alignItems: 'start',
+                }}
+                className="case-grid"
+              >
+                <div>
+                  <span className="tag" style={{ marginBottom: 24, display: 'inline-block' }}>
+                    {c.tag}
+                  </span>
+                  <p
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: 80,
+                      fontWeight: 500,
+                      lineHeight: 1,
+                      color: 'var(--orange)',
+                      letterSpacing: '-0.05em',
+                      marginTop: 24,
+                    }}
+                  >
+                    {c.num}
+                  </p>
                 </div>
-              ))}
-            </div>
+                <div>
+                  <h2
+                    className="display-2"
+                    style={{ marginBottom: 16, fontSize: 'clamp(32px, 4vw, 56px)' }}
+                  >
+                    {c.title}
+                  </h2>
+                  <p
+                    style={{
+                      fontFamily: "'Instrument Serif', serif",
+                      fontStyle: 'italic',
+                      fontSize: 22,
+                      color: 'var(--orange)',
+                      marginBottom: 32,
+                    }}
+                  >
+                    {c.subtitle}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'Prompt', sans-serif",
+                      fontSize: 17,
+                      color: 'var(--ink-soft)',
+                      lineHeight: 1.6,
+                      marginBottom: 24,
+                    }}
+                  >
+                    {c.context}
+                  </p>
+                  <div
+                    style={{
+                      borderLeft: '3px solid var(--orange)',
+                      paddingLeft: 20,
+                      fontFamily: "'Prompt', sans-serif",
+                      fontSize: 18,
+                      fontWeight: 600,
+                      color: 'var(--ink)',
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {c.challenge}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
 
-            {/* Results */}
-            <div className="bg-brand-navy text-white p-8">
-              <p className="font-heading text-brand-orange text-xs tracking-widest uppercase mb-6">
-                4. Résultats cliniques
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {c.results.map((r) => (
-                  <div key={r} className="text-center">
-                    <p className="font-heading font-bold text-brand-orange text-2xl mb-2">
-                      {r.split(' ')[0]}
+            <Reveal stagger>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                  gap: 24,
+                  marginBottom: 64,
+                }}
+              >
+                {c.steps.map((s, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      background: 'var(--bg)',
+                      border: '1px solid var(--line)',
+                      padding: 28,
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: 11,
+                        letterSpacing: '0.18em',
+                        textTransform: 'uppercase',
+                        color: 'var(--orange)',
+                        marginBottom: 12,
+                      }}
+                    >
+                      Étape {String(i + 1).padStart(2, '0')}
                     </p>
-                    <p className="font-heading text-gray-300 text-xs leading-relaxed">
-                      {r.split(' ').slice(1).join(' ')}
+                    <h3
+                      style={{
+                        fontFamily: "'Prompt', sans-serif",
+                        fontWeight: 700,
+                        fontSize: 22,
+                        marginBottom: 16,
+                      }}
+                    >
+                      {s.label}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "'Prompt', sans-serif",
+                        fontSize: 14,
+                        color: 'var(--ink-soft)',
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      {s.body}
                     </p>
                   </div>
                 ))}
               </div>
-            </div>
+            </Reveal>
 
-            {idx < cases.length - 1 && (
-              <div className="mt-16 text-center">
-                <p className="font-heading text-gray-400 text-sm tracking-widest uppercase">
-                  Ne traitez pas les symptômes. Soignez la cause.
+            <Reveal>
+              <div
+                style={{
+                  background: 'var(--navy)',
+                  color: '#fff',
+                  padding: 48,
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+              >
+                <p className="eyebrow" style={{ color: '#ff6600', marginBottom: 32 }}>
+                  Résultats
+                </p>
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: `repeat(auto-fit, minmax(160px, 1fr))`,
+                    gap: 32,
+                  }}
+                >
+                  {c.results.map((r, i) => (
+                    <div key={i}>
+                      <p
+                        style={{
+                          fontFamily: "'Prompt', sans-serif",
+                          fontWeight: 700,
+                          fontSize: 56,
+                          letterSpacing: '-0.03em',
+                          color: '#fcc01e',
+                          lineHeight: 1,
+                          marginBottom: 8,
+                        }}
+                      >
+                        {r.value}
+                      </p>
+                      <p
+                        style={{
+                          fontFamily: "'Prompt', sans-serif",
+                          fontSize: 13,
+                          color: 'rgba(255,255,255,0.7)',
+                          lineHeight: 1.4,
+                        }}
+                      >
+                        {r.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p
+                  style={{
+                    marginTop: 48,
+                    paddingTop: 32,
+                    borderTop: '1px solid rgba(255,255,255,0.15)',
+                    fontFamily: "'Instrument Serif', serif",
+                    fontStyle: 'italic',
+                    fontSize: 22,
+                    color: 'rgba(255,255,255,0.85)',
+                  }}
+                >
+                  « {c.closer} »
                 </p>
               </div>
-            )}
+            </Reveal>
           </div>
+
+          <style>{`
+            @media (max-width: 800px) {
+              .case-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+            }
+          `}</style>
         </section>
       ))}
 
       <CTASection />
-    </>
+    </div>
   )
 }

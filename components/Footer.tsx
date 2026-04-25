@@ -1,73 +1,173 @@
 import Link from 'next/link'
+import { NexperioLogo } from './MoleculeLogo'
+
+const NAV = [
+  { href: '/les-ordonnances', label: 'Les ordonnances' },
+  { href: '/les-traitements', label: 'Les traitements' },
+  { href: '/cas-de-guerison', label: 'Cas de guérison' },
+  { href: '/nexperio-tech', label: 'Nexperio Tech' },
+  { href: '/le-docteur-digital', label: 'Le Docteur Digital' },
+  { href: '/blog', label: 'Blog' },
+]
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-navy text-white">
-      <div className="container-max section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-
-          {/* Brand */}
+    <footer
+      style={{
+        background: 'var(--navy-deep)',
+        color: '#fff',
+        paddingTop: 80,
+        paddingBottom: 40,
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      <div className="container" style={{ position: 'relative' }}>
+        {/* 4-column grid */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: 48,
+            paddingBottom: 48,
+            borderBottom: '1px solid rgba(255,255,255,0.1)',
+          }}
+        >
           <div>
-            <Link href="/" className="flex items-center">
-              <img
-                src="https://static.wixstatic.com/media/7f7a19_cb6f7b8ea71744a99a2e93d5640ef57e~mv2.png"
-                alt="Nexperio"
-                className="h-12 w-auto object-contain"
-              />
-            </Link>
-            <p className="mt-4 text-gray-400 text-sm leading-relaxed font-heading">
-              "Je ne fais pas du conseil.<br />
-              Je soigne."
-            </p>
-            <p className="mt-2 text-brand-orange text-sm font-heading font-semibold tracking-wide">
-              — Le Docteur Digital
+            <NexperioLogo height={28} />
+            <p
+              style={{
+                marginTop: 20,
+                fontFamily: "'Prompt', sans-serif",
+                color: 'rgba(255,255,255,0.6)',
+                fontSize: 14,
+                lineHeight: 1.6,
+                maxWidth: 280,
+              }}
+            >
+              &ldquo;Je ne fais pas du conseil. Je soigne.&rdquo;<br />
+              <span style={{ color: '#ff6600', fontWeight: 600 }}>— Le Docteur Digital</span>
             </p>
           </div>
 
-          {/* Nav */}
           <div>
-            <h4 className="font-heading font-semibold text-sm tracking-widest uppercase text-gray-400 mb-4">
+            <p
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 11,
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.4)',
+                marginBottom: 20,
+              }}
+            >
               Navigation
-            </h4>
-            <nav className="flex flex-col gap-3">
-              {[
-                { label: 'Les ordonnances', href: '/les-ordonnances' },
-                { label: 'Les traitements', href: '/les-traitements' },
-                { label: 'Cas de guérison', href: '/cas-de-guerison' },
-                { label: 'Le Docteur Digital', href: '/le-docteur-digital' },
-                { label: 'Blog', href: '/blog' },
-              ].map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm text-gray-300 hover:text-brand-orange transition-colors font-heading"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+            </p>
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                style={{
+                  display: 'block',
+                  padding: '6px 0',
+                  fontFamily: "'Prompt', sans-serif",
+                  fontSize: 14,
+                  color: 'rgba(255,255,255,0.75)',
+                }}
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-sm tracking-widest uppercase text-gray-400 mb-4">
+            <p
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 11,
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.4)',
+                marginBottom: 20,
+              }}
+            >
               Contact
-            </h4>
-            <p className="text-sm text-gray-300 font-heading mb-2">ag@nexperio.com</p>
-            <p className="text-sm text-gray-300 font-heading mb-6">+33 6 70 77 88 99</p>
-            <Link href="/rdv" className="btn-primary text-xs">
-              Diagnostic offert
-            </Link>
+            </p>
+            <p
+              style={{
+                fontFamily: "'Prompt', sans-serif",
+                fontSize: 14,
+                color: 'rgba(255,255,255,0.85)',
+                marginBottom: 8,
+              }}
+            >
+              contact@nexperio.com
+            </p>
+            <p
+              style={{
+                fontFamily: "'Prompt', sans-serif",
+                fontSize: 14,
+                color: 'rgba(255,255,255,0.85)',
+                marginBottom: 24,
+              }}
+            >
+              06 70 77 88 99
+            </p>
+          </div>
+
+          <div>
+            <p
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 11,
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.4)',
+                marginBottom: 20,
+              }}
+            >
+              Statut clinique
+            </p>
+            <p
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                fontFamily: "'Prompt', sans-serif",
+                fontSize: 14,
+                color: 'rgba(255,255,255,0.85)',
+              }}
+            >
+              <span className="pulse-dot" /> Cabinet ouvert · Paris
+            </p>
+            <p
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 11,
+                color: 'rgba(255,255,255,0.4)',
+                marginTop: 12,
+              }}
+            >
+              48h · diagnostic offert · sans engagement
+            </p>
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-500 font-heading">
-            © {new Date().getFullYear()} Nexperio. Tous droits réservés.
-          </p>
-          <p className="text-xs text-gray-500 font-heading">
-            Fait avec 💉 par le Docteur Digital
-          </p>
+        <div
+          style={{
+            paddingTop: 32,
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: 16,
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: 11,
+            color: 'rgba(255,255,255,0.35)',
+            letterSpacing: '0.05em',
+          }}
+        >
+          <p>© {new Date().getFullYear()} NEXPERIO · TOUS DROITS RÉSERVÉS</p>
+          <p>FAIT AVEC 💉 PAR LE DOCTEUR DIGITAL</p>
         </div>
       </div>
     </footer>

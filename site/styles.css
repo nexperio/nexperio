@@ -1,14 +1,10 @@
-/* Nexperio — Design tokens & base styles (ported from prototype) */
+/* Nexperio — Design tokens & base styles */
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* Brand wordmark — used exclusively for the "nexperio" logotype */
 @font-face {
   font-family: 'Adequate';
-  src: url('/assets/Adequate.otf') format('opentype');
+  src: url('assets/Adequate.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -35,16 +31,6 @@
   --ink-mute: #8a96a3;
   --line: rgba(10, 34, 56, 0.08);
 
-  /* Tailwind-bridged tokens (existing app code uses these) */
-  --brand-orange: #ff6600;
-  --brand-orange-light: #fcc01e;
-  --brand-navy: #153d64;
-  --brand-aqua: #9dd69c;
-  --brand-sage: #59806e;
-  --brand-blue: #4376bd;
-  --brand-mauve: #a02b93;
-  --brand-slate: #718fa2;
-
   /* Typo */
   --font-heading: 'Prompt', system-ui, sans-serif;
   --font-body: Arial, Helvetica, sans-serif;
@@ -59,6 +45,18 @@
 
   --radius: 0px;
   --radius-pill: 999px;
+}
+
+[data-theme="dark"] {
+  --bg: #0a2238;
+  --bg-soft: #0f2c47;
+  --bg-section: #103251;
+  --ink: #faf7f2;
+  --ink-soft: #b8c5d3;
+  --ink-mute: #6a7e93;
+  --line: rgba(255, 255, 255, 0.1);
+  --navy: #ff6600;
+  --navy-deep: #ff8c33;
 }
 
 * { box-sizing: border-box; }
@@ -109,7 +107,7 @@ p { margin: 0; line-height: 1.6; }
   background: currentColor;
 }
 
-/* Buttons (prototype style — overrides the previous Tailwind .btn-primary/.btn-outline) */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -136,7 +134,9 @@ p { margin: 0; line-height: 1.6; }
   transform: translateY(-2px);
   box-shadow: 0 12px 30px -10px rgba(255, 102, 0, 0.55);
 }
-.btn-primary .arrow { transition: transform 300ms cubic-bezier(.2,.7,.2,1); }
+.btn-primary .arrow {
+  transition: transform 300ms cubic-bezier(.2,.7,.2,1);
+}
 .btn-primary:hover .arrow { transform: translateX(4px); }
 
 .btn-outline {
@@ -261,7 +261,9 @@ p { margin: 0; line-height: 1.6; }
 }
 
 /* Page transition */
-.page-enter { animation: pageEnter 600ms cubic-bezier(.2,.7,.2,1) both; }
+.page-enter {
+  animation: pageEnter 600ms cubic-bezier(.2,.7,.2,1) both;
+}
 @keyframes pageEnter {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -288,12 +290,15 @@ p { margin: 0; line-height: 1.6; }
   vertical-align: middle;
 }
 
-/* Navbar scrolled variant */
+/* Dark mode header transparent variant */
 .nav-scrolled {
   background: rgba(255,255,255,0.85);
   backdrop-filter: blur(20px) saturate(140%);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
   border-bottom: 1px solid var(--line);
+}
+[data-theme="dark"] .nav-scrolled {
+  background: rgba(10, 34, 56, 0.85);
 }
 
 /* Density variations */
@@ -301,28 +306,12 @@ p { margin: 0; line-height: 1.6; }
 [data-density="regular"] { --density: 1; }
 [data-density="airy"] { --density: 1.4; }
 
-/* Logo animations */
-@keyframes nx-logo-wobble {
-  0%, 100% { transform: rotate(0deg) scale(1); filter: drop-shadow(0 0 0 rgba(255,106,0,0)); }
-  50% { transform: rotate(-3deg) scale(1.04); filter: drop-shadow(0 4px 18px rgba(255,106,0,0.35)); }
-}
-@keyframes nx-hero-wobble {
-  0%, 100% { transform: rotate(0deg) scale(1); }
-  25% { transform: rotate(-2deg) scale(1.02); }
-  75% { transform: rotate(2deg) scale(1.02); }
-}
-@keyframes nx-glow {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.08); }
-}
-@keyframes nx-echo-1 {
-  0%, 100% { transform: translate(0,0) scale(1); }
-  50% { transform: translate(8px,-10px) scale(1.1); }
-}
-@keyframes nx-echo-2 {
-  0%, 100% { transform: translate(0,0) scale(1); }
-  50% { transform: translate(-8px,10px) scale(1.1); }
-}
+/* Font variations */
+[data-font="prompt"] { --font-heading: 'Prompt', system-ui, sans-serif; }
+[data-font="grotesk"] { --font-heading: 'Space Grotesk', system-ui, sans-serif; }
+[data-font="serif-mix"] { --font-heading: 'Instrument Serif', serif; }
+
+/* Marker dots used in molecule */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -331,27 +320,3 @@ p { margin: 0; line-height: 1.6; }
 
 /* Selection */
 ::selection { background: var(--orange); color: #fff; }
-
-/* RDV form fields */
-.rdv-input {
-  font-family: 'Prompt', sans-serif;
-  font-size: 16px;
-  padding: 14px 0;
-  border: 0;
-  border-bottom: 1.5px solid var(--line);
-  background: transparent;
-  color: var(--ink);
-  outline: none;
-  width: 100%;
-  transition: border-color 200ms;
-}
-.rdv-input:focus { border-bottom-color: var(--orange); }
-.rdv-textarea { resize: vertical; }
-
-/* Legacy helpers used elsewhere in app/ */
-@layer components {
-  .section-padding { @apply px-6 py-20 md:px-12 lg:px-24; }
-  .container-max { @apply max-w-7xl mx-auto; }
-  .highlight-pink { @apply text-brand-orange; }
-  .highlight-blue { @apply text-brand-blue; }
-}

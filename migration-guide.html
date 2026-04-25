@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guide de migration — Nexperio</title>
+<link rel="stylesheet" href="site/styles.css" />
+<style>
+  body { background: var(--bg-soft); }
+  .doc { max-width: 880px; margin: 0 auto; padding: 80px 32px; }
+  .doc h1 { font-size: clamp(40px, 5vw, 72px); letter-spacing: -0.03em; line-height: 1; margin-bottom: 24px; }
+  .doc h2 { font-size: clamp(24px, 3vw, 36px); margin-top: 64px; margin-bottom: 16px; letter-spacing: -0.02em; }
+  .doc h3 { font-size: 18px; margin-top: 32px; margin-bottom: 12px; }
+  .doc p, .doc li { font-family: 'Prompt', sans-serif; font-size: 16px; line-height: 1.7; color: var(--ink-soft); }
+  .doc ul, .doc ol { padding-left: 24px; }
+  .doc li { margin-bottom: 8px; }
+  .doc code, .doc pre { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  .doc code { background: rgba(255,102,0,0.1); color: var(--orange); padding: 2px 6px; }
+  .doc pre { background: var(--navy-deep); color: #fcc01e; padding: 24px; overflow-x: auto; line-height: 1.6; }
+  .doc pre code { background: none; color: inherit; padding: 0; }
+  .step { display: flex; gap: 24px; padding: 24px; border: 1px solid var(--line); background: var(--bg); margin-bottom: 16px; }
+  .step-n { font-family: 'JetBrains Mono', monospace; color: var(--orange); font-size: 14px; flex-shrink: 0; letter-spacing: 0.18em; }
+  .callout { border-left: 4px solid var(--orange); padding: 16px 24px; background: var(--bg); margin: 24px 0; }
+  .top-nav { padding: 24px 32px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; background: var(--bg); }
+</style>
+</head>
+<body>
+<nav class="top-nav">
+  <a href="Nexperio.html" style="display:flex; align-items:center; gap:10px; font-family:'Prompt',sans-serif; font-weight:600;">
+    ← Retour au site
+  </a>
+  <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.18em; color: var(--ink-mute);">GUIDE DE MIGRATION · v1.0</span>
+</nav>
+
+<div class="doc">
+  <p class="eyebrow">Migration Wix → GitHub → Vercel</p>
+  <h1>De Wix à <span class="serif accent">votre propre code.</span></h1>
+  <p style="font-size: 20px; max-width: 680px;">
+    Guide pas-à-pas pour héberger www.nexperio.com sur Vercel à partir du repo GitHub <code>nexperio/nexperio</code>. Compter 1 à 2 heures.
+  </p>
+
+  <h2>Vue d'ensemble</h2>
+  <ol>
+    <li><strong>Cloner le repo</strong> et tester en local</li>
+    <li><strong>Configurer Supabase</strong> (base de données pour le blog)</li>
+    <li><strong>Pousser sur GitHub</strong> (déjà fait — le repo existe)</li>
+    <li><strong>Déployer sur Vercel</strong></li>
+    <li><strong>Connecter le domaine</strong> nexperio.com</li>
+    <li><strong>Couper Wix</strong> proprement</li>
+  </ol>
+
+  <h2>1 · Cloner et tester en local</h2>
+  <div class="step">
+    <span class="step-n">01</span>
+    <div>
+      <p>Ouvrez un terminal, placez-vous où vous voulez (ex. <code>~/Sites</code>) et clonez :</p>
+      <pre><code>git clone https://github.com/nexperio/nexperio.git
+cd nexperio
+npm install</code></pre>
+      <p>Si <code>npm</code> n'est pas installé : <a href="https://nodejs.org" target="_blank" style="color:var(--orange)">nodejs.org</a> (version LTS).</p>
+    </div>
+  </div>
+
+  <h2>2 · Configurer Supabase</h2>
+  <div class="step">
+    <span class="step-n">02.A</span>
+    <div>
+      <p>Créez un compte gratuit sur <a href="https://supabase.com" target="_blank" style="color:var(--orange)">supabase.com</a>, puis un nouveau projet en région <strong>Europe (Frankfurt)</strong>.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">02.B</span>
+    <div>
+      <p>Dans <strong>SQL Editor</strong>, collez le contenu de <code>supabase/schema.sql</code> et cliquez <strong>Run</strong>. Cela crée la table <code>blog_posts</code>.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">02.C</span>
+    <div>
+      <p>Allez dans <strong>Settings → API</strong>. Le projet est déjà créé : récupérez ces valeurs (ou utilisez celles ci-dessous, déjà préparées pour vous) :</p>
+      <ul>
+        <li><code>Project URL</code> → <code>https://qarqnjzixkkunhdzgule.supabase.co</code></li>
+        <li><code>anon public key</code> (alias "publishable key") → <code>sb_publishable_3xuBGegF0JxWO8tnrQoXkA_tSgoh1TO</code></li>
+        <li><code>service_role key</code> → <strong>à garder secrète</strong>, uniquement côté serveur</li>
+      </ul>
+      <p>Dupliquez <code>.env.example</code> en <code>.env.local</code> (déjà fourni dans ce projet) :</p>
+      <pre><code>cp .env.example .env.local</code></pre>
+      <p>Le fichier <code>.env.example</code> contient déjà l'URL et la publishable key. Ajoutez la <code>service_role</code> et la clé Resend (cf. étape 6).</p>
+      <div class="callout" style="margin-top:16px;">
+        <strong>⚠️ Sécurité</strong> — la <code>publishable key</code> est <em>faite</em> pour être exposée côté client. La <code>service_role key</code> ne doit <strong>jamais</strong> apparaître dans du code envoyé au navigateur (pas de préfixe <code>NEXT_PUBLIC_</code>) ni être commitée.
+      </div>
+      <p>Testez en local :</p>
+      <pre><code>npm run dev
+# → http://localhost:3000</code></pre>
+    </div>
+  </div>
+
+  <h2>3 · Pousser sur GitHub</h2>
+  <p>Votre repo <code>github.com/nexperio/nexperio</code> existe déjà. Pour synchroniser une modif locale :</p>
+  <pre><code>git add .
+git commit -m "feat: ma modification"
+git push origin main</code></pre>
+
+  <div class="callout">
+    <strong>Astuce</strong> — chaque <code>git push</code> redéploie automatiquement sur Vercel une fois la connexion faite (étape suivante).
+  </div>
+
+  <h2>4 · Déployer sur Vercel</h2>
+  <div class="step">
+    <span class="step-n">04.A</span>
+    <div>
+      <p>Créez un compte sur <a href="https://vercel.com" target="_blank" style="color:var(--orange)">vercel.com</a> avec votre compte GitHub.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">04.B</span>
+    <div>
+      <p><strong>New Project</strong> → importez <code>nexperio/nexperio</code>.</p>
+      <p>Vercel détecte automatiquement Next.js. Ne touchez pas aux build settings.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">04.C</span>
+    <div>
+      <p>Dans <strong>Environment Variables</strong>, ajoutez les deux clés Supabase :</p>
+      <ul>
+        <li><code>NEXT_PUBLIC_SUPABASE_URL</code></li>
+        <li><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></li>
+      </ul>
+      <p>Cochez Production + Preview + Development.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">04.D</span>
+    <div>
+      <p>Cliquez <strong>Deploy</strong>. ~2 minutes plus tard : URL automatique <code>nexperio.vercel.app</code>.</p>
+    </div>
+  </div>
+
+  <h2>5 · Connecter nexperio.com</h2>
+  <div class="step">
+    <span class="step-n">05.A</span>
+    <div>
+      <p>Dans Vercel → projet → <strong>Settings → Domains</strong>. Ajoutez :</p>
+      <ul>
+        <li><code>nexperio.com</code></li>
+        <li><code>www.nexperio.com</code></li>
+      </ul>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">05.B</span>
+    <div>
+      <p>Vercel vous donne deux enregistrements DNS à configurer chez votre registrar (OVH, Gandi, GoDaddy, etc.) :</p>
+      <pre><code>Type   Nom    Valeur
+A      @      76.76.21.21
+CNAME  www    cname.vercel-dns.com</code></pre>
+      <p><strong>Important</strong> : tant que Wix gère le DNS, le site pointe encore vers Wix. Il faut soit :</p>
+      <ul>
+        <li><strong>Option A</strong> — récupérer la gestion DNS chez votre registrar (recommandé)</li>
+        <li><strong>Option B</strong> — modifier le DNS directement dans Wix (Settings → Domains → Advanced → DNS Records)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">05.C</span>
+    <div>
+      <p>Une fois les DNS propagés (15 min – 24 h), Vercel provisionne le SSL automatiquement (Let's Encrypt). Le cadenas vert apparaît tout seul.</p>
+    </div>
+  </div>
+
+  <h2>6 · Resend pour le formulaire de RDV</h2>
+  <div class="step">
+    <span class="step-n">06.A</span>
+    <div>
+      <p>Créez un compte sur <a href="https://resend.com" target="_blank" style="color:var(--orange)">resend.com</a>. Plan gratuit : 3 000 emails/mois, suffisant largement.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">06.B</span>
+    <div>
+      <p>Dans Resend → <strong>Domains</strong>, ajoutez <code>nexperio.com</code>. Resend vous donne 3 enregistrements DNS (SPF, DKIM, MX) à ajouter chez votre registrar — comme pour Vercel à l'étape 5.</p>
+      <p>Une fois validé (15 min – quelques heures), vous pouvez envoyer depuis <code>noreply@nexperio.com</code>.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">06.C</span>
+    <div>
+      <p>Dans Resend → <strong>API Keys</strong>, créez une clé "Production" (full access) et copiez-la.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">06.D</span>
+    <div>
+      <p>Sur Vercel → projet → <strong>Settings → Environment Variables</strong>, ajoutez :</p>
+      <pre><code>RESEND_API_KEY=re_xxxxxxxxxxxx</code></pre>
+      <p>Puis installez le SDK dans votre projet Next.js :</p>
+      <pre><code>npm install resend</code></pre>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">06.E</span>
+    <div>
+      <p>Le fichier <code>api/send-rdv.ts</code> est déjà prêt dans ce projet. Copiez-le dans votre dépôt Next.js à l'emplacement :</p>
+      <pre><code>app/api/send-rdv/route.ts</code></pre>
+      <p>Le formulaire de la page RDV envoie déjà <code>POST /api/send-rdv</code> avec les données du patient, déclenche un email vers <strong>ag@nexperio.com</strong>, puis redirige vers Calendly automatiquement.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-n">06.F</span>
+    <div>
+      <p>Test : remplissez le formulaire en production, vérifiez la réception sur ag@nexperio.com et la redirection vers Calendly.</p>
+    </div>
+  </div>
+
+  <h2>7 · Couper Wix proprement</h2>
+  <ol>
+    <li>Vérifiez que <code>https://www.nexperio.com</code> répond bien depuis Vercel (pas de page Wix qui s'affiche)</li>
+    <li>Testez toutes les pages, le formulaire de RDV, le blog</li>
+    <li>Dans Wix : <strong>Settings → Subscriptions → Cancel plan</strong></li>
+    <li>Conservez l'export de votre contenu Wix (au cas où) avant de fermer le compte</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Conseil migration</strong> — gardez Wix actif pendant 1 à 2 semaines après bascule, le temps de vérifier que tout fonctionne. Coupez seulement après.
+  </div>
+
+  <h2>Ajouter un article de blog</h2>
+  <p>Via Supabase <strong>Table Editor</strong> → <code>blog_posts</code> → <strong>Insert row</strong>.</p>
+  <p>Ou en SQL :</p>
+  <pre><code>INSERT INTO blog_posts (title, slug, excerpt, content, first_published_at, featured, category_names)
+VALUES (
+  'Mon titre',
+  'mon-slug-unique',
+  'Résumé court...',
+  '&lt;p&gt;Contenu HTML...&lt;/p&gt;',
+  now(),
+  false,
+  ARRAY['Catégorie']
+);</code></pre>
+
+  <h2>En cas de pépin</h2>
+  <ul>
+    <li><strong>Build qui plante sur Vercel</strong> → onglet <em>Deployments</em> → cliquez sur le dernier build → lisez les logs</li>
+    <li><strong>SSL "non sécurisé"</strong> → patientez, ça se règle dans les 24 h après propagation DNS</li>
+    <li><strong>Le blog est vide</strong> → vérifiez que les variables d'env Supabase sont bien dans Vercel</li>
+    <li><strong>Le DNS ne propage pas</strong> → testez avec <a href="https://dnschecker.org" target="_blank" style="color:var(--orange)">dnschecker.org</a></li>
+  </ul>
+
+  <div style="margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--ink-mute);">
+    <span>NEXPERIO · GUIDE DE MIGRATION</span>
+    <a href="Nexperio.html" style="color: var(--orange);">← RETOUR AU SITE</a>
+  </div>
+</div>
+</body>
+</html>
