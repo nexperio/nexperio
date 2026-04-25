@@ -17,8 +17,6 @@ type RdvPayload = {
   body?: string;
 };
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 function escapeHtml(s: string = '') {
   return s
     .replace(/&/g, '&amp;')
@@ -59,6 +57,8 @@ export async function POST(req: NextRequest) {
         <p style="margin:16px 0 0; font-size:12px; color:#8a96a3;">Le patient sera redirigé vers Calendly pour choisir un créneau.</p>
       </div>
     `;
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
       from: 'Nexperio <noreply@nexperio.com>',     // requires nexperio.com verified in Resend
