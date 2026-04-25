@@ -9,30 +9,51 @@ export const metadata: Metadata = {
     "Les ressources du Docteur Digital pour recouvrer la santé de votre e-commerce : la formule magique, le glossaire, le livre blanc des 7 pièges, le B-A BA de l'IA.",
 }
 
-const RESOURCES = [
+type Resource = {
+  num: string
+  tag: string
+  title: string
+  body: string
+  href: string
+  cta: string
+  external?: boolean
+}
+
+const RESOURCES: Resource[] = [
   {
     num: '01',
     tag: 'Fondamentaux',
     title: 'La formule magique',
     body: "Pour tout comprendre de l'e-commerce et revenir aux fondamentaux. La grille de lecture qui aligne stratégie, exécution et rentabilité.",
+    href: '/pdf/nexperio-formule-magique-ecommerce-2025.pdf',
+    cta: 'Télécharger le PDF',
+    external: true,
   },
   {
     num: '02',
     tag: 'Vocabulaire',
     title: 'Le glossaire',
     body: "Pour savoir de quoi l'on parle — et que cela ne soit plus du chinois pour vous. Toutes les définitions e-commerce, CX et IA, en clair.",
+    href: '/les-ordonnances/glossaire',
+    cta: 'Consulter le glossaire',
   },
   {
     num: '03',
     tag: 'Livre blanc',
     title: 'Les 7 pièges invisibles',
     body: "À mettre dans toutes les mains des e-commerçants pour ne plus tomber dans les pièges qui freinent la croissance sans qu'on s'en aperçoive.",
+    href: '/pdf/nexperio-7-pieges-ecommerce-2025.pdf',
+    cta: 'Télécharger le PDF',
+    external: true,
   },
   {
     num: '04',
     tag: 'IA · 2025',
     title: "Le B-A BA de l'IA",
     body: "L'indispensable pour comprendre l'IA en 2025 : ce qui marche, ce qui ne marche pas, et comment l'intégrer concrètement dans vos process.",
+    href: '/pdf/nexperio-ba-ba-ia-2025.pdf',
+    cta: 'Télécharger le PDF',
+    external: true,
   },
 ]
 
@@ -111,59 +132,81 @@ export default function OrdonnancesPage() {
                 gap: 24,
               }}
             >
-              {RESOURCES.map((r) => (
-                <div key={r.num} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32 }}>
-                    <span className="tag">{r.tag}</span>
-                    <span
+              {RESOURCES.map((r) => {
+                const cardContent = (
+                  <>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32 }}>
+                      <span className="tag">{r.tag}</span>
+                      <span
+                        style={{
+                          fontFamily: "'JetBrains Mono', monospace",
+                          fontSize: 13,
+                          color: 'var(--ink-mute)',
+                        }}
+                      >
+                        {r.num}
+                      </span>
+                    </div>
+                    <h3
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: 13,
-                        color: 'var(--ink-mute)',
+                        fontFamily: "'Prompt', sans-serif",
+                        fontWeight: 700,
+                        fontSize: 28,
+                        marginBottom: 16,
+                        letterSpacing: '-0.01em',
                       }}
                     >
-                      {r.num}
+                      {r.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "'Prompt', sans-serif",
+                        fontSize: 15,
+                        color: 'var(--ink-soft)',
+                        lineHeight: 1.6,
+                        marginBottom: 32,
+                        flex: 1,
+                      }}
+                    >
+                      {r.body}
+                    </p>
+                    <span
+                      style={{
+                        fontFamily: "'Prompt', sans-serif",
+                        fontSize: 13,
+                        fontWeight: 600,
+                        letterSpacing: '0.05em',
+                        textTransform: 'uppercase',
+                        color: 'var(--orange)',
+                        paddingTop: 24,
+                        borderTop: '1px solid var(--line)',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 8,
+                      }}
+                    >
+                      {r.cta} <span className="arrow">→</span>
                     </span>
-                  </div>
-                  <h3
-                    style={{
-                      fontFamily: "'Prompt', sans-serif",
-                      fontWeight: 700,
-                      fontSize: 28,
-                      marginBottom: 16,
-                      letterSpacing: '-0.01em',
-                    }}
+                  </>
+                )
+                const cardStyle = { display: 'flex', flexDirection: 'column' as const }
+                return r.external ? (
+                  <a
+                    key={r.num}
+                    href={r.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="card"
+                    style={cardStyle}
                   >
-                    {r.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: "'Prompt', sans-serif",
-                      fontSize: 15,
-                      color: 'var(--ink-soft)',
-                      lineHeight: 1.6,
-                      marginBottom: 32,
-                      flex: 1,
-                    }}
-                  >
-                    {r.body}
-                  </p>
-                  <span
-                    style={{
-                      fontFamily: "'Prompt', sans-serif",
-                      fontSize: 13,
-                      fontWeight: 600,
-                      letterSpacing: '0.05em',
-                      textTransform: 'uppercase',
-                      color: 'var(--orange)',
-                      paddingTop: 24,
-                      borderTop: '1px solid var(--line)',
-                    }}
-                  >
-                    Bientôt disponible →
-                  </span>
-                </div>
-              ))}
+                    {cardContent}
+                  </a>
+                ) : (
+                  <Link key={r.num} href={r.href} className="card" style={cardStyle}>
+                    {cardContent}
+                  </Link>
+                )
+              })}
             </div>
           </Reveal>
         </div>

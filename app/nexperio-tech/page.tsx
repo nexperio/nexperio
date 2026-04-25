@@ -2,82 +2,13 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import CTASection from '@/components/CTASection'
 import { Reveal } from '@/components/Reveal'
+import { TOOLS } from '@/lib/tools'
 
 export const metadata: Metadata = {
   title: 'Nexperio Tech',
   description:
     "Le lab IA & data du Docteur Digital. Outils d'analyse e-commerce, GPTs custom, applications livrées (vurto.ai, atelierduchatbot.com).",
 }
-
-const TOOLS = [
-  {
-    slug: 'p-l',
-    tag: 'Finance',
-    num: '01',
-    title: 'Monitorer votre P&L',
-    body:
-      "Un bilan clair de votre business. Diagnostic instantané de la santé financière à partir des données opérationnelles : CA, marge brute, dépenses, résultat net, ratios essentiels.",
-    href: 'https://pl.nexperio.tech',
-    legacy: 'https://www.nexperio.com/la-trousse/p-l',
-  },
-  {
-    slug: 'lifetime-value',
-    tag: 'LTV',
-    num: '02',
-    title: 'Lifetime Value',
-    body:
-      "Le miroir stratégique. Calcule LTV réelle, CA par client, marge nette et ratio LTV/CAC — avec un diagnostic des leviers à activer si le ratio est faible.",
-    href: 'https://clv.nexperio.tech',
-    legacy: 'https://www.nexperio.com/la-trousse/analyser-lifetime-value',
-  },
-  {
-    slug: 'codes-promo',
-    tag: 'Promo',
-    num: '03',
-    title: 'Générateur de codes promo',
-    body:
-      "Une promo bien pensée, c'est une vente en plus — pas une marge en moins. Préfixe, format, type de remise, conditions, validité, exclusions, historique : full contrôle.",
-    href: 'https://promo.nexperio.tech',
-    legacy: 'https://www.nexperio.com/la-trousse/generer-des-codes-promo',
-  },
-  {
-    slug: 'qr-codes',
-    tag: 'On→Offline',
-    num: '04',
-    title: 'Générateur de QR codes',
-    body:
-      "Un lien. Un scan. Une action. QR codes générés en 10 secondes — URL, message ou contact — déployables sur flyers, packaging, vitrines, gobelets, écrans.",
-    href: 'https://qr.nexperio.tech',
-    legacy: 'https://www.nexperio.com/la-trousse/creer-qrcodes',
-  },
-  {
-    slug: 'simulateur-prix-dynamique',
-    tag: 'Pricing',
-    num: '05',
-    title: 'Simulateur de prix dynamique',
-    body:
-      "En 2 minutes, le prix optimal pour votre produit. Curseurs en temps réel, scénarios multiples, impacts simulés sur ventes, marge et CA.",
-    legacy: 'https://www.nexperio.com/la-trousse/simulateur-prix-dynamique',
-  },
-  {
-    slug: 'analyse-marge-produit',
-    tag: 'Marge',
-    num: '06',
-    title: 'Analyse de marge produit',
-    body:
-      "Vos produits au scanner. Marge brute unitaire, profit global, taux de rentabilité, alertes — pour identifier les produits sous-performants et arrêter les hémorragies cachées.",
-    legacy: 'https://www.nexperio.com/la-trousse/analyse-marge-produit',
-  },
-  {
-    slug: 'guide-des-tailles',
-    tag: 'Mode',
-    num: '07',
-    title: 'Guide des tailles',
-    body:
-      "Conversion +. Satisfaction +. Retours −. Sélection de morphologie, prise de mesures simplifiée, recommandation personnalisée. Prototype adaptable sur-mesure à votre catalogue.",
-    legacy: 'https://www.nexperio.com/la-trousse/guide-des-tailles',
-  },
-]
 
 const GPTS = [
   {
@@ -293,8 +224,7 @@ export default function NexperioTechPage() {
                 }}
               >
                 Sept modules opérationnels — finance, pricing, marge, LTV, promo, QR, taille —
-                pensés pour le pilotage d&apos;un e-commerce sans friction Excel. En cours de
-                réhébergement sur cette nouvelle infra.
+                pensés pour le pilotage d&apos;un e-commerce sans friction Excel.
               </p>
             </div>
           </Reveal>
@@ -307,107 +237,77 @@ export default function NexperioTechPage() {
                 gap: 24,
               }}
             >
-              {TOOLS.map((t) => {
-                const live = 'href' in t && (t as { href?: string }).href
-                const target = live || t.legacy
-                return (
-                  <a
-                    key={t.slug}
-                    href={target}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="card"
-                    style={{ display: 'flex', flexDirection: 'column' }}
+              {TOOLS.map((t) => (
+                <Link
+                  key={t.slug}
+                  href={`/nexperio-tech/${t.slug}`}
+                  className="card"
+                  style={{ display: 'flex', flexDirection: 'column' }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32 }}>
+                    <span className="tag">{t.tag}</span>
+                    <span
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: 13,
+                        color: 'var(--ink-mute)',
+                      }}
+                    >
+                      {t.num}
+                    </span>
+                  </div>
+                  <h3
+                    style={{
+                      fontFamily: "'Prompt', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 24,
+                      marginBottom: 16,
+                      letterSpacing: '-0.01em',
+                    }}
                   >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32 }}>
-                      <span className="tag">{t.tag}</span>
-                      <span
-                        style={{
-                          fontFamily: "'JetBrains Mono', monospace",
-                          fontSize: 13,
-                          color: 'var(--ink-mute)',
-                        }}
-                      >
-                        {t.num}
-                      </span>
-                    </div>
-                    <h3
+                    {t.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "'Prompt', sans-serif",
+                      fontSize: 15,
+                      color: 'var(--ink-soft)',
+                      lineHeight: 1.6,
+                      marginBottom: 24,
+                      flex: 1,
+                    }}
+                  >
+                    {t.description}
+                  </p>
+                  <div
+                    style={{
+                      paddingTop: 24,
+                      borderTop: '1px solid var(--line)',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      gap: 12,
+                    }}
+                  >
+                    <span
                       style={{
                         fontFamily: "'Prompt', sans-serif",
-                        fontWeight: 700,
-                        fontSize: 24,
-                        marginBottom: 16,
-                        letterSpacing: '-0.01em',
-                      }}
-                    >
-                      {t.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: "'Prompt', sans-serif",
-                        fontSize: 15,
-                        color: 'var(--ink-soft)',
-                        lineHeight: 1.6,
-                        marginBottom: 24,
-                        flex: 1,
-                      }}
-                    >
-                      {t.body}
-                    </p>
-                    <div
-                      style={{
-                        paddingTop: 24,
-                        borderTop: '1px solid var(--line)',
-                        display: 'flex',
-                        justifyContent: 'space-between',
+                        fontSize: 13,
+                        fontWeight: 600,
+                        letterSpacing: '0.08em',
+                        textTransform: 'uppercase',
+                        color: 'var(--orange)',
+                        display: 'inline-flex',
                         alignItems: 'center',
-                        gap: 12,
+                        gap: 8,
                       }}
                     >
-                      {live ? (
-                        <span
-                          style={{
-                            fontFamily: "'Prompt', sans-serif",
-                            fontSize: 13,
-                            fontWeight: 600,
-                            letterSpacing: '0.08em',
-                            textTransform: 'uppercase',
-                            color: 'var(--orange)',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: 8,
-                          }}
-                        >
-                          <span className="pulse-dot" style={{ width: 6, height: 6 }} />
-                          Lancer →
-                        </span>
-                      ) : (
-                        <span
-                          style={{
-                            fontFamily: "'JetBrains Mono', monospace",
-                            fontSize: 10,
-                            letterSpacing: '0.18em',
-                            textTransform: 'uppercase',
-                            color: 'var(--ink-mute)',
-                          }}
-                        >
-                          Réhébergement en cours
-                        </span>
-                      )}
-                      <span
-                        style={{
-                          fontFamily: "'JetBrains Mono', monospace",
-                          fontSize: 11,
-                          color: 'var(--ink-mute)',
-                          whiteSpace: 'nowrap',
-                        }}
-                      >
-                        {live ? new URL(target).hostname : 'v1 (Wix)'}
-                      </span>
-                    </div>
-                  </a>
-                )
-              })}
+                      <span className="pulse-dot" style={{ width: 6, height: 6 }} />
+                      Découvrir →
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
           </Reveal>
         </div>
