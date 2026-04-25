@@ -9,6 +9,14 @@ export const metadata: Metadata = {
     "Arnaud Guedj, fondateur de Nexperio. 30 ans d'expérience, 4 entreprises, une méthode : diagnostiquer, prescrire, soigner.",
 }
 
+const PODCAST_LINKS = [
+  { label: 'Spotify', href: 'https://lnkd.in/dUB74jMq' },
+  { label: 'Apple Podcasts', href: 'https://lnkd.in/dPavRt9k' },
+  { label: 'YouTube', href: 'https://lnkd.in/d6zMHEW5' },
+  { label: 'Amazon Music', href: 'https://lnkd.in/dhsBJyNR' },
+  { label: 'Deezer', href: 'https://lnkd.in/d6GA8CkM' },
+]
+
 const PRINCIPLES = [
   {
     label: 'Excellence',
@@ -325,6 +333,292 @@ export default function DocteurPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Interviews & médias */}
+      <section className="section" style={{ background: 'var(--bg-section)' }}>
+        <div className="container">
+          <Reveal>
+            <div style={{ marginBottom: 48, maxWidth: 720 }}>
+              <p className="eyebrow" style={{ marginBottom: 16 }}>Le Docteur dans la presse</p>
+              <h2 className="display-2">
+                Interviews <span className="serif accent">&amp; médias.</span>
+              </h2>
+              <p
+                style={{
+                  fontFamily: "'Prompt', sans-serif",
+                  fontSize: 18,
+                  color: 'var(--ink-soft)',
+                  lineHeight: 1.6,
+                  marginTop: 24,
+                }}
+              >
+                Conversations, podcasts et passages presse — pour parler e-commerce, IA et stratégie
+                digitale en clair.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Business Legend */}
+          <Reveal>
+            <div
+              className="bl-grid"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1.1fr 1fr',
+                gap: 64,
+                alignItems: 'center',
+                background: 'var(--navy)',
+                color: '#fff',
+                padding: 56,
+                position: 'relative',
+                overflow: 'hidden',
+                marginBottom: 32,
+              }}
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  opacity: 0.08,
+                  pointerEvents: 'none',
+                  backgroundImage:
+                    'radial-gradient(circle at 80% 30%, #ff6600 0, transparent 50%)',
+                }}
+              />
+              <div style={{ position: 'relative' }}>
+                <p className="eyebrow" style={{ color: '#ff6600', marginBottom: 24 }}>
+                  Podcast · Business Legend
+                </p>
+                <h3
+                  className="display-2"
+                  style={{
+                    color: '#fff',
+                    fontSize: 'clamp(24px, 3vw, 40px)',
+                    marginBottom: 24,
+                  }}
+                >
+                  L&apos;invité de <span className="serif" style={{ color: '#fcc01e' }}>Business Legend.</span>
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Prompt', sans-serif",
+                    fontSize: 17,
+                    color: 'rgba(255,255,255,0.75)',
+                    lineHeight: 1.6,
+                    marginBottom: 32,
+                  }}
+                >
+                  L&apos;épisode complet sur Business Legend — e-commerce, transformation digitale
+                  et IA. Disponible sur toutes les plateformes.
+                </p>
+                <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                  {PODCAST_LINKS.map((p) => (
+                    <a
+                      key={p.label}
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        fontFamily: "'Prompt', sans-serif",
+                        fontSize: 12,
+                        fontWeight: 600,
+                        letterSpacing: '0.12em',
+                        textTransform: 'uppercase',
+                        color: '#fff',
+                        padding: '12px 18px',
+                        border: '1.5px solid rgba(255,255,255,0.4)',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      {p.label} →
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <div style={{ position: 'relative' }}>
+                <video
+                  controls
+                  preload="metadata"
+                  style={{
+                    width: '100%',
+                    background: '#000',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                  }}
+                  poster="/videos/business-legend-poster.jpg"
+                >
+                  <source src="/videos/business-legend-extrait.mp4" type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
+                <p
+                  style={{
+                    marginTop: 12,
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 11,
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    color: 'rgba(255,255,255,0.5)',
+                  }}
+                >
+                  Extrait · Business Legend
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Café de l'eCommerce */}
+          <Reveal>
+            <div
+              className="card cafe-card"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1.1fr 1fr',
+                gap: 48,
+                alignItems: 'center',
+                marginBottom: 32,
+              }}
+            >
+              <div>
+                <p className="eyebrow" style={{ marginBottom: 16 }}>
+                  Podcast · Le Café de l&apos;eCommerce
+                </p>
+                <h3
+                  style={{
+                    fontFamily: "'Prompt', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 'clamp(22px, 2.6vw, 32px)',
+                    letterSpacing: '-0.01em',
+                    marginBottom: 16,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Paye Ta Tournée ! <span className="serif accent">#07</span>
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Prompt', sans-serif",
+                    fontSize: 16,
+                    color: 'var(--ink-soft)',
+                    lineHeight: 1.6,
+                    marginBottom: 24,
+                  }}
+                >
+                  L&apos;interview décalée du Café de l&apos;eCommerce. Discussion à bâtons rompus
+                  sur le métier, les coulisses et la pratique du Docteur Digital.
+                </p>
+                <a
+                  href="https://smartlink.ausha.co/le-cafe-de-l-ecommerce/paye-ta-tournee-07-arnaud"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: "'Prompt', sans-serif",
+                    fontSize: 12,
+                    fontWeight: 600,
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: 'var(--ink)',
+                    padding: '12px 18px',
+                    border: '1.5px solid var(--ink)',
+                    textDecoration: 'none',
+                    display: 'inline-block',
+                  }}
+                >
+                  Écouter sur toutes les plateformes →
+                </a>
+              </div>
+              <div>
+                <audio controls preload="metadata" style={{ width: '100%' }}>
+                  <source src="/audios/paye-ta-tournee.mp3" type="audio/mpeg" />
+                  Votre navigateur ne supporte pas la lecture audio.
+                </audio>
+                <p
+                  style={{
+                    marginTop: 12,
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 11,
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    color: 'var(--ink-mute)',
+                  }}
+                >
+                  Épisode complet
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* BlueBirds */}
+          <Reveal>
+            <a
+              href="https://bluebirds.partners/arnaud-guedj-docteur-digital-e-commerce/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'auto 1fr auto',
+                gap: 32,
+                alignItems: 'center',
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 13,
+                  color: 'var(--ink-mute)',
+                }}
+              >
+                01
+              </span>
+              <div>
+                <p className="eyebrow" style={{ marginBottom: 12 }}>
+                  Interview · BlueBirds
+                </p>
+                <h3
+                  style={{
+                    fontFamily: "'Prompt', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 22,
+                    letterSpacing: '-0.01em',
+                    marginBottom: 8,
+                  }}
+                >
+                  Arnaud Guedj, le Docteur Digital de l&apos;e-commerce
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Prompt', sans-serif",
+                    fontSize: 15,
+                    color: 'var(--ink-soft)',
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Portrait long format sur BlueBirds — parcours, méthode, vision du e-commerce et
+                  de la transformation digitale.
+                </p>
+              </div>
+              <span
+                style={{
+                  fontFamily: "'Prompt', sans-serif",
+                  fontSize: 13,
+                  fontWeight: 600,
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: 'var(--orange)',
+                }}
+              >
+                Lire →
+              </span>
+            </a>
+          </Reveal>
+        </div>
+
+        <style>{`
+          @media (max-width: 900px) {
+            .bl-grid { grid-template-columns: 1fr !important; gap: 32px !important; padding: 32px !important; }
+            .cafe-card { grid-template-columns: 1fr !important; gap: 32px !important; }
+          }
+        `}</style>
       </section>
 
       <CTASection />
