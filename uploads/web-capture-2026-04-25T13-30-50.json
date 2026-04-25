@@ -1,0 +1,76 @@
+[
+  {
+    "id": "cap_moedk974_wab7vq",
+    "selector": "img#img_comp-lw7shgbx",
+    "label": "img#img_comp-lw7shgbx",
+    "tag": "img",
+    "url": "https://www.nexperio.com/",
+    "title": "La clinique du Docteur Digital | Nexperio",
+    "timestamp": "2026-04-25T13:28:12.688Z",
+    "innerText": "",
+    "outerHTML": "<img fetchpriority=\"high\" sizes=\"117px\" srcset=\"https://static.wixstatic.com/media/7f7a19_cb6f7b8ea71744a99a2e93d5640ef57e~mv2.png/v1/crop/x_9,y_0,w_283,h_283/fill/w_117,h_132,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo%20nexperio%20300x300%20fond%20transparent.png 1x, https://static.wixstatic.com/media/7f7a19_cb6f7b8ea71744a99a2e93d5640ef57e~mv2.png/v1/crop/x_9,y_0,w_283,h_283/fill/w_234,h_264,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo%20nexperio%20300x300%20fond%20transparent.png 2x\" id=\"img_comp-lw7shgbx\" src=\"https://static.wixstatic.com/media/7f7a19_cb6f7b8ea71744a99a2e93d5640ef57e~mv2.png/v1/crop/x_9,y_0,w_283,h_283/fill/w_117,h_132,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo%20nexperio%20300x300%20fond%20transparent.png\" alt=\"Logo nexperio couleur\" style=\"object-fit:cover\" class=\"BI8PVQ Tj01hh\" width=\"117\" height=\"132\">",
+    "rect": {
+      "x": 403,
+      "y": 0,
+      "width": 117,
+      "height": 132
+    },
+    "computedStyles": {
+      "display": "block",
+      "width": "117px",
+      "height": "132px",
+      "border": "0px none rgb(0, 0, 238)",
+      "background": "rgba(0, 0, 0, 0) none repeat scroll 0px 0px / auto padding-box border-box",
+      "color": "rgb(0, 0, 238)",
+      "font-family": "Arial, Helvetica, sans-serif",
+      "font-size": "10px",
+      "text-decoration": "none",
+      "overflow": "hidden",
+      "transition": "all",
+      "cursor": "pointer",
+      "object-fit": "cover"
+    },
+    "cssRules": [
+      {
+        "selector": "div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, nav, button, section, header, footer, title",
+        "css": "vertical-align: baseline; background: 0px 0px; border: 0px; outline: 0px; margin: 0px; padding: 0px;"
+      },
+      {
+        "selector": ".Tj01hh",
+        "css": "display: block;"
+      },
+      {
+        "selector": ".MW5IWV, .Tj01hh",
+        "css": "height: 100%; width: 100%;"
+      },
+      {
+        "selector": ".BI8PVQ",
+        "css": "min-height: var(--image-min-height); min-width: var(--image-min-width);"
+      },
+      {
+        "selector": ".BI8PVQ img, img.BI8PVQ",
+        "css": "filter: var(--filter-effect-svg-url); mask-image: var(--mask-image,none); mask-position: var(--mask-position,0); mask-repeat: var(--mask-repeat,no-repeat); mask-size: var(--mask-size,100% 100%); object-position: var(--object-position);"
+      },
+      {
+        "selector": ".MazNVa .BI8PVQ",
+        "css": "overflow: hidden;"
+      },
+      {
+        "selector": ".Tj01hh, .jhxvbR",
+        "css": "display: block; height: 100%; width: 100%;"
+      },
+      {
+        "selector": ".Tj01hh, .jhxvbR",
+        "css": "display: block; height: 100%; width: 100%;"
+      },
+      {
+        "selector": ".Tj01hh, .jhxvbR",
+        "css": "display: block; height: 100%; width: 100%;"
+      },
+      {
+        "selector": ".Tj01hh, .jhxvbR",
+        "css": "display: block; height: 100%; width: 100%;"
+      }
+    ]
+  }
+]

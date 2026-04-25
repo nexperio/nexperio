@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexperio — La clinique du Docteur Digital</title>
+  <link rel="stylesheet" href="site/styles.css" />
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="site/tweaks-panel.jsx"></script>
+  <script type="text/babel" src="site/components.jsx"></script>
+  <script type="text/babel" src="site/page-home.jsx"></script>
+  <script type="text/babel" src="site/page-traitements.jsx"></script>
+  <script type="text/babel" src="site/page-cas.jsx"></script>
+  <script type="text/babel" src="site/page-docteur.jsx"></script>
+  <script type="text/babel" src="site/page-ordonnances.jsx"></script>
+  <script type="text/babel" src="site/page-blog.jsx"></script>
+  <script type="text/babel" src="site/page-rdv.jsx"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "density": "regular",
+      "heroVariant": "editorial",
+      "font": "prompt",
+      "primary": "#ff6600",
+      "navy": "#153d64",
+      "dark": false
+    }/*EDITMODE-END*/;
+
+    function getPageFromHash() {
+      const h = (window.location.hash || '').replace('#/', '').replace('#', '');
+      return h || 'home';
+    }
+
+    function App() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+      const [page, setPage] = useState(getPageFromHash());
+
+      useEffect(() => {
+        const onHash = () => setPage(getPageFromHash());
+        window.addEventListener('hashchange', onHash);
+        return () => window.removeEventListener('hashchange', onHash);
+      }, []);
+
+      // Apply tweaks to root
+      useEffect(() => {
+        const root = document.documentElement;
+        root.dataset.density = t.density;
+        root.dataset.font = t.font;
+        root.dataset.theme = t.dark ? 'dark' : 'light';
+        root.style.setProperty('--orange', t.primary);
+        root.style.setProperty('--navy', t.navy);
+      }, [t]);
+
+      const navigate = (id) => {
+        window.location.hash = '/' + id;
+        setPage(id);
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      };
+
+      return (
+        <>
+          <Navbar current={page} onNavigate={navigate} />
+          <main key={page} style={{ minHeight: '60vh' }}>
+            {page === 'home' && <HomePage onNavigate={navigate} heroVariant={t.heroVariant} />}
+            {page === 'traitements' && <TraitementsPage onNavigate={navigate} />}
+            {page === 'cas' && <CasPage onNavigate={navigate} />}
+            {page === 'docteur' && <DocteurPage onNavigate={navigate} />}
+            {page === 'ordonnances' && <OrdonnancesPage onNavigate={navigate} />}
+            {page === 'blog' && <BlogPage onNavigate={navigate} />}
+            {page === 'rdv' && <RdvPage onNavigate={navigate} />}
+          </main>
+          <Footer onNavigate={navigate} />
+
+          <TweaksPanel>
+            <TweakSection label="Layout" />
+            <TweakRadio label="Densité" value={t.density}
+                        options={['compact', 'regular', 'airy']}
+                        onChange={(v) => setTweak('density', v)} />
+            <TweakSelect label="Hero (accueil)" value={t.heroVariant}
+                         options={[
+                           { value: 'editorial', label: 'Éditorial' },
+                           { value: 'molecular', label: 'Moléculaire' },
+                           { value: 'manifesto', label: 'Manifeste split' },
+                         ]}
+                         onChange={(v) => setTweak('heroVariant', v)} />
+
+            <TweakSection label="Typographie" />
+            <TweakSelect label="Police titres" value={t.font}
+                         options={[
+                           { value: 'prompt', label: 'Prompt (défaut)' },
+                           { value: 'grotesk', label: 'Space Grotesk' },
+                           { value: 'serif-mix', label: 'Instrument Serif' },
+                         ]}
+                         onChange={(v) => setTweak('font', v)} />
+
+            <TweakSection label="Couleurs" />
+            <TweakColor label="Accent (orange)" value={t.primary}
+                        onChange={(v) => setTweak('primary', v)} />
+            <TweakColor label="Navy" value={t.navy}
+                        onChange={(v) => setTweak('navy', v)} />
+            <TweakToggle label="Mode sombre" value={t.dark}
+                         onChange={(v) => setTweak('dark', v)} />
+
+            <TweakSection label="Migration" />
+            <TweakButton label="Voir le guide de migration"
+                         onClick={() => window.open('migration-guide.html', '_blank')} />
+          </TweaksPanel>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

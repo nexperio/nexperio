@@ -1,149 +1,305 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getBlogPosts } from '@/lib/supabase'
+import type { Metadata } from 'next'
 import CTASection from '@/components/CTASection'
-
-export const dynamic = 'force-dynamic'
+import { Reveal } from '@/components/Reveal'
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Les dernières piqûres de rappel du Docteur Digital. E-commerce, expérience client, IA.',
+  description:
+    'Remèdes e-commerce & digital — articles, analyses et retours d’expérience du Docteur Digital.',
 }
 
-const FALLBACK_POSTS = [
+const POSTS = [
   {
-    id: '1',
-    title: 'E-commerce : Et si votre croissance était freinée par l\'un de ces 7 pièges invisibles ?',
-    slug: 'e-commerce-et-si-votre-croissance-etait-freinee-par-les-7-pieges',
+    slug: 'e-commerce-7-pieges-invisibles',
+    title:
+      "E-commerce : et si votre croissance était freinée par l'un de ces 7 pièges invisibles ?",
     excerpt:
-      'Le marché e-commerce français a atteint un point de bascule. En 2025, l\'accélération ne suffit plus : il faut de la précision, de la résilience et une expérience client irréprochable.',
-    first_published_at: '2025-04-17T15:15:09.125Z',
-    featured: true,
-    minutes_to_read: 2,
-    category_names: ['E-commerce', 'Stratégie'],
+      "Les freins de croissance qu'on ne voit pas — et pourquoi en 2025, l'expérience client doit être irréprochable.",
+    date: '17 avril 2026',
+    readTime: '2 min',
+    tag: 'Stratégie',
+  },
+  {
+    slug: 'doubler-ventes-en-ligne-upsell',
+    title:
+      "J'ai vu des business e-commerce doubler leurs ventes en ligne en une année…",
+    excerpt:
+      'La stratégie d’upsell « good, better, best » : comment la structurer pour doubler vos ventes en ligne.',
+    date: '24 mars 2026',
+    readTime: '2 min',
+    tag: 'Conversion',
+  },
+  {
+    slug: 'beaute-strategie-ecommerce',
+    title:
+      "🪞 Miroir, miroir, dis-moi qui aura la plus belle stratégie e-commerce dans l'industrie de la beauté…",
+    excerpt:
+      'Marché de la beauté : 24,5 % du marché US des cosmétiques en ligne projeté à horizon 2028.',
+    date: '24 mars 2026',
+    readTime: '1 min',
+    tag: 'Marché',
+  },
+  {
+    slug: 'levier-strategique-meconnu',
+    title:
+      "Un levier stratégique méconnu en e-commerce… vous voulez l'info ?",
+    excerpt:
+      'La recherche interne — l’un des leviers e-commerce les plus sous-exploités, et pourquoi cela coûte cher.',
+    date: '24 mars 2026',
+    readTime: '2 min',
+    tag: 'Conversion',
+  },
+  {
+    slug: 'digital-river-depot-de-bilan',
+    title:
+      "🚨 Digital River en dépôt de bilan : séisme dans le monde de l'e-commerce 🚨",
+    excerpt:
+      'Une faillite qui en dit long sur l’infrastructure du e-commerce mondial — analyse et conséquences.',
+    date: '24 mars 2026',
+    readTime: '2 min',
+    tag: 'Actualité',
+  },
+  {
+    slug: 'mobile-conversion-superieure',
+    title:
+      'Les sites e-commerce optimisés pour mobile enregistrent un taux de conversion 1,5× supérieur',
+    excerpt:
+      "74 % des transactions e-commerce mondiales se font sur mobile. Ce que cela implique pour votre conversion.",
+    date: '24 mars 2026',
+    readTime: '1 min',
+    tag: 'Mobile',
   },
 ]
 
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('fr-FR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
-
-export default async function BlogPage() {
-  let posts: any[] = []
-  try {
-    posts = await getBlogPosts()
-  } catch {
-    posts = FALLBACK_POSTS
-  }
-
-  const featured = posts.find((p: any) => p.featured) || posts[0]
-  const rest = posts.filter((p: any) => p.id !== featured?.id)
+export default function BlogPage() {
+  const [featured, ...rest] = POSTS
 
   return (
-    <>
+    <div className="page-enter">
       {/* Hero */}
-      <section className="section-padding bg-white border-b border-gray-100">
-        <div className="container-max">
-          <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
-            Le blog du Docteur Digital
+      <section
+        style={{
+          paddingTop: 140,
+          paddingBottom: 64,
+          background: 'var(--bg-soft)',
+        }}
+      >
+        <div className="container">
+          <p className="eyebrow" style={{ marginBottom: 32 }}>
+            <span className="pulse-dot" /> Le Blog du Docteur Digital
           </p>
-          <h1 className="font-heading font-bold text-5xl md:text-6xl leading-tight">
-            Nos dernières <span className="text-brand-orange">piqûres de rappel</span>
+          <h1 className="display" style={{ maxWidth: 1100, marginBottom: 32 }}>
+            Remèdes e-commerce. <br />
+            <span className="serif accent">Et digital.</span>
           </h1>
+          <p
+            style={{
+              fontFamily: "'Prompt', sans-serif",
+              fontSize: 22,
+              color: 'var(--ink-soft)',
+              maxWidth: 720,
+              lineHeight: 1.5,
+            }}
+          >
+            Articles, analyses et retours d&apos;expérience. Pour comprendre, décider, agir.
+          </p>
         </div>
       </section>
 
       {/* Featured post */}
-      {featured && (
-        <section className="section-padding bg-brand-navy text-white">
-          <div className="container-max">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="tag border-brand-orange/50 text-brand-orange bg-brand-orange/10">
-                    Article vedette
-                  </span>
-                  {featured.category_names?.map((cat: string) => (
-                    <span key={cat} className="text-xs font-heading text-gray-400 uppercase tracking-wide">
-                      {cat}
-                    </span>
-                  ))}
-                </div>
-                <h2 className="font-heading font-bold text-3xl md:text-4xl leading-tight mb-6">
+      <section className="section" style={{ paddingTop: 48 }}>
+        <div className="container">
+          <Reveal>
+            <Link
+              href={`/blog/${featured.slug}`}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: 64,
+                alignItems: 'center',
+                background: 'var(--navy)',
+                color: '#fff',
+                padding: 56,
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+              className="featured-post"
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  opacity: 0.08,
+                  pointerEvents: 'none',
+                  backgroundImage:
+                    'radial-gradient(circle at 80% 30%, #ff6600 0, transparent 50%)',
+                }}
+              />
+              <div style={{ position: 'relative' }}>
+                <p
+                  className="eyebrow"
+                  style={{ color: '#ff6600', marginBottom: 24 }}
+                >
+                  À la une · {featured.tag}
+                </p>
+                <h2
+                  className="display-2"
+                  style={{
+                    color: '#fff',
+                    fontSize: 'clamp(28px, 3.6vw, 48px)',
+                    marginBottom: 24,
+                  }}
+                >
                   {featured.title}
                 </h2>
-                <p className="font-heading text-gray-300 leading-relaxed mb-8">
+                <p
+                  style={{
+                    fontFamily: "'Prompt', sans-serif",
+                    fontSize: 17,
+                    color: 'rgba(255,255,255,0.75)',
+                    lineHeight: 1.6,
+                  }}
+                >
                   {featured.excerpt}
                 </p>
-                <div className="flex items-center gap-6 mb-8">
-                  <span className="font-heading text-xs text-gray-500">
-                    {formatDate(featured.first_published_at)}
-                  </span>
-                  <span className="font-heading text-xs text-gray-500">
-                    {featured.minutes_to_read} min de lecture
-                  </span>
-                </div>
-                <Link href={`/blog/${featured.slug}`} className="btn-primary">
-                  Lire l'article
-                </Link>
               </div>
-              <div className="bg-gray-900 p-10 border border-gray-700">
-                <p className="font-heading text-brand-orange text-sm tracking-widest uppercase mb-4">
-                  💉 Prescription du Docteur
+              <div style={{ position: 'relative', textAlign: 'right' }}>
+                <p
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 12,
+                    letterSpacing: '0.18em',
+                    color: 'rgba(255,255,255,0.5)',
+                    marginBottom: 16,
+                  }}
+                >
+                  {featured.date} · {featured.readTime}
                 </p>
-                <p className="font-heading text-white font-bold text-xl leading-relaxed">
-                  "J'ai vu des business e-commerce doubler leurs ventes en ligne en une année.
-                  Ça vous intéresse que je vous raconte ?"
-                </p>
+                <span
+                  style={{
+                    fontFamily: "'Prompt', sans-serif",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    color: '#fcc01e',
+                  }}
+                >
+                  Lire l&apos;article →
+                </span>
               </div>
-            </div>
-          </div>
-        </section>
-      )}
+            </Link>
+          </Reveal>
+        </div>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (max-width: 800px) {
+            .featured-post { grid-template-columns: 1fr !important; gap: 32px !important; padding: 32px !important; }
+            .featured-post > div:last-child { text-align: left !important; }
+          }
+        ` }} />
+      </section>
 
-      {/* All posts */}
-      {rest.length > 0 && (
-        <section className="section-padding bg-gray-50">
-          <div className="container-max">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {rest.map((post: any) => (
-                <article key={post.id} className="bg-white border border-gray-100 hover:border-brand-orange transition-colors duration-300 group">
-                  <div className="p-8">
-                    <div className="flex gap-2 mb-4 flex-wrap">
-                      {post.category_names?.slice(0, 2).map((cat: string) => (
-                        <span key={cat} className="tag text-xs">{cat}</span>
-                      ))}
-                    </div>
-                    <h3 className="font-heading font-bold text-xl leading-snug mb-4 group-hover:text-brand-orange transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="font-heading text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="font-heading text-xs text-gray-400">
-                        {formatDate(post.first_published_at)}
-                      </span>
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="font-heading text-sm font-semibold text-brand-blue hover:text-brand-orange transition-colors"
-                      >
-                        Lire →
-                      </Link>
-                    </div>
+      {/* Posts grid */}
+      <section className="section" style={{ paddingTop: 0, background: 'var(--bg-section)' }}>
+        <div className="container">
+          <Reveal stagger>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: 24,
+              }}
+            >
+              {rest.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/blog/${p.slug}`}
+                  className="card"
+                  style={{ display: 'flex', flexDirection: 'column' }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      marginBottom: 24,
+                    }}
+                  >
+                    <span className="tag">{p.tag}</span>
+                    <span
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: 11,
+                        color: 'var(--ink-mute)',
+                      }}
+                    >
+                      {p.readTime}
+                    </span>
                   </div>
-                </article>
+                  <h3
+                    style={{
+                      fontFamily: "'Prompt', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 22,
+                      lineHeight: 1.25,
+                      letterSpacing: '-0.01em',
+                      marginBottom: 16,
+                      flex: 1,
+                    }}
+                  >
+                    {p.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "'Prompt', sans-serif",
+                      fontSize: 14,
+                      color: 'var(--ink-soft)',
+                      lineHeight: 1.6,
+                      marginBottom: 24,
+                    }}
+                  >
+                    {p.excerpt}
+                  </p>
+                  <div
+                    style={{
+                      paddingTop: 20,
+                      borderTop: '1px solid var(--line)',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: 11,
+                        color: 'var(--ink-mute)',
+                        letterSpacing: '0.05em',
+                      }}
+                    >
+                      {p.date}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "'Prompt', sans-serif",
+                        fontSize: 12,
+                        fontWeight: 600,
+                        letterSpacing: '0.05em',
+                        textTransform: 'uppercase',
+                        color: 'var(--orange)',
+                      }}
+                    >
+                      Lire →
+                    </span>
+                  </div>
+                </Link>
               ))}
             </div>
-          </div>
-        </section>
-      )}
+          </Reveal>
+        </div>
+      </section>
 
       <CTASection />
-    </>
+    </div>
   )
 }
