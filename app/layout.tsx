@@ -70,6 +70,10 @@ export default function RootLayout({
         <Navbar />
         <main style={{ minHeight: '60vh' }}>{children}</main>
         <Footer />
+        <Script
+          src="https://atelierduchatbot.com/widget.js?id=eabcb761-2b17-4273-887f-ba4a014f2c7f"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   )
