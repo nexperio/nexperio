@@ -154,6 +154,7 @@ export const TOOLS: Tool[] = [
       "Visualiser instantanément l'effet d'un changement de prix",
       'Ajuster face à la concurrence ou à la valeur perçue',
     ],
+    href: 'https://nexperio.github.io/dynamic-pricing/',
     legacy: 'https://www.nexperio.com/la-trousse/simulateur-prix-dynamique',
   },
   {
@@ -184,6 +185,7 @@ export const TOOLS: Tool[] = [
       'Réaligner les prix ou volumes',
     ],
     philosophy: "Un produit qui se vend, c'est bien. Un produit qui marge, c'est vital.",
+    href: 'https://nexperio.github.io/margin-analyzer/',
     legacy: 'https://www.nexperio.com/la-trousse/analyse-marge-produit',
   },
   {
@@ -205,6 +207,7 @@ export const TOOLS: Tool[] = [
     ],
     philosophy:
       "Un client hésitant sur la taille n'achète pas. Une mauvaise taille livrée, c'est un retour, un mécontentement, une perte sèche.",
+    href: 'https://nexperio.github.io/guide-tailles/',
     legacy: 'https://www.nexperio.com/la-trousse/guide-des-tailles',
   },
 ]
