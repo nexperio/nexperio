@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import ReactMarkdown from 'react-markdown'
@@ -21,6 +22,9 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    openGraph: post.image
+      ? { title: post.title, description: post.excerpt, images: [post.image] }
+      : { title: post.title, description: post.excerpt },
   }
 }
 
@@ -87,6 +91,31 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
 
+        {post.image && (
+          <section style={{ background: 'var(--bg-soft)', paddingBottom: 64 }}>
+            <div className="container" style={{ maxWidth: 1100 }}>
+              <div
+                style={{
+                  position: 'relative',
+                  aspectRatio: '16 / 9',
+                  overflow: 'hidden',
+                  borderRadius: 4,
+                  background: 'var(--bg-section)',
+                }}
+              >
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  sizes="(max-width: 1100px) 100vw, 1100px"
+                  priority
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+            </div>
+          </section>
+        )}
+
         <section
           className="section"
           style={{ paddingTop: 64, paddingBottom: 64 }}
@@ -145,6 +174,26 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                     className="card"
                     style={{ display: 'flex', flexDirection: 'column' }}
                   >
+                    {p.image && (
+                      <div
+                        style={{
+                          position: 'relative',
+                          aspectRatio: '16 / 10',
+                          marginBottom: 20,
+                          overflow: 'hidden',
+                          borderRadius: 2,
+                          background: 'var(--bg-soft)',
+                        }}
+                      >
+                        <Image
+                          src={p.image}
+                          alt={p.title}
+                          fill
+                          sizes="(max-width: 700px) 100vw, 33vw"
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </div>
+                    )}
                     <div
                       style={{
                         display: 'flex',

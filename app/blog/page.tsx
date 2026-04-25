@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import CTASection from '@/components/CTASection'
 import { Reveal } from '@/components/Reveal'
@@ -99,30 +100,52 @@ export default function BlogPage() {
                     {featured.excerpt}
                   </p>
                 </div>
-                <div style={{ position: 'relative', textAlign: 'right' }}>
-                  <p
-                    style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: 12,
-                      letterSpacing: '0.18em',
-                      color: 'rgba(255,255,255,0.5)',
-                      marginBottom: 16,
-                    }}
-                  >
-                    {featured.dateLabel} · {featured.readTime}
-                  </p>
-                  <span
-                    style={{
-                      fontFamily: "'Prompt', sans-serif",
-                      fontSize: 13,
-                      fontWeight: 600,
-                      letterSpacing: '0.14em',
-                      textTransform: 'uppercase',
-                      color: '#fcc01e',
-                    }}
-                  >
-                    Lire l&apos;article →
-                  </span>
+                <div style={{ position: 'relative' }}>
+                  {featured.image && (
+                    <div
+                      style={{
+                        position: 'relative',
+                        aspectRatio: '4 / 3',
+                        marginBottom: 20,
+                        overflow: 'hidden',
+                        borderRadius: 4,
+                      }}
+                    >
+                      <Image
+                        src={featured.image}
+                        alt={featured.title}
+                        fill
+                        sizes="(max-width: 800px) 100vw, 50vw"
+                        priority
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                  )}
+                  <div style={{ textAlign: 'right' }}>
+                    <p
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: 12,
+                        letterSpacing: '0.18em',
+                        color: 'rgba(255,255,255,0.5)',
+                        marginBottom: 16,
+                      }}
+                    >
+                      {featured.dateLabel} · {featured.readTime}
+                    </p>
+                    <span
+                      style={{
+                        fontFamily: "'Prompt', sans-serif",
+                        fontSize: 13,
+                        fontWeight: 600,
+                        letterSpacing: '0.14em',
+                        textTransform: 'uppercase',
+                        color: '#fcc01e',
+                      }}
+                    >
+                      Lire l&apos;article →
+                    </span>
+                  </div>
                 </div>
               </Link>
             </Reveal>
@@ -153,6 +176,26 @@ export default function BlogPage() {
                   className="card"
                   style={{ display: 'flex', flexDirection: 'column' }}
                 >
+                  {p.image && (
+                    <div
+                      style={{
+                        position: 'relative',
+                        aspectRatio: '16 / 10',
+                        marginBottom: 20,
+                        overflow: 'hidden',
+                        borderRadius: 2,
+                        background: 'var(--bg-soft)',
+                      }}
+                    >
+                      <Image
+                        src={p.image}
+                        alt={p.title}
+                        fill
+                        sizes="(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                  )}
                   <div
                     style={{
                       display: 'flex',
