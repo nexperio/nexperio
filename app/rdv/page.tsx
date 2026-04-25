@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RdvForm from './RdvForm'
 
 export const metadata: Metadata = {
   title: 'Prendre rendez-vous',
@@ -158,41 +159,7 @@ export default function RdvPage() {
               >
                 Formulaire de consultation
               </p>
-              <form
-                action="mailto:contact@nexperio.com"
-                method="get"
-                style={{ display: 'flex', flexDirection: 'column', gap: 24 }}
-              >
-                <Field label="Votre nom *" name="name" required placeholder="Arnaud Guedj" />
-                <Field
-                  label="Votre email *"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="vous@entreprise.com"
-                />
-                <Field label="Votre entreprise" name="company" placeholder="Nexperio SAS" />
-                <FieldArea
-                  label="Décrivez vos symptômes *"
-                  name="body"
-                  required
-                  placeholder="Mon e-commerce stagne, mes conversions baissent, je ne sais pas par où commencer…"
-                />
-                <button type="submit" className="btn btn-primary" style={{ alignSelf: 'flex-start', padding: '20px 32px', fontSize: 13 }}>
-                  Envoyer ma demande <span className="arrow">→</span>
-                </button>
-              </form>
-              <p
-                style={{
-                  marginTop: 24,
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: 11,
-                  color: 'var(--ink-mute)',
-                  letterSpacing: '0.05em',
-                }}
-              >
-                Données traitées en interne. Aucun envoi à des tiers.
-              </p>
+              <RdvForm />
             </div>
           </div>
         </div>
@@ -207,74 +174,3 @@ export default function RdvPage() {
   )
 }
 
-function Field({
-  label,
-  name,
-  type = 'text',
-  required = false,
-  placeholder,
-}: {
-  label: string
-  name: string
-  type?: string
-  required?: boolean
-  placeholder?: string
-}) {
-  return (
-    <label style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <span
-        style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: 11,
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          color: 'var(--ink-mute)',
-        }}
-      >
-        {label}
-      </span>
-      <input
-        type={type}
-        name={name}
-        required={required}
-        placeholder={placeholder}
-        className="rdv-input"
-      />
-    </label>
-  )
-}
-
-function FieldArea({
-  label,
-  name,
-  required = false,
-  placeholder,
-}: {
-  label: string
-  name: string
-  required?: boolean
-  placeholder?: string
-}) {
-  return (
-    <label style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <span
-        style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: 11,
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          color: 'var(--ink-mute)',
-        }}
-      >
-        {label}
-      </span>
-      <textarea
-        name={name}
-        required={required}
-        placeholder={placeholder}
-        rows={5}
-        className="rdv-input rdv-textarea"
-      />
-    </label>
-  )
-}

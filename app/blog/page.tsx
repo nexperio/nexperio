@@ -1,76 +1,15 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import CTASection from '@/components/CTASection'
 import { Reveal } from '@/components/Reveal'
+import { POSTS } from '@/lib/blog'
 
 export const metadata: Metadata = {
   title: 'Blog',
   description:
     'Remèdes e-commerce & digital — articles, analyses et retours d’expérience du Docteur Digital.',
 }
-
-const POSTS = [
-  {
-    slug: 'e-commerce-7-pieges-invisibles',
-    title:
-      "E-commerce : et si votre croissance était freinée par l'un de ces 7 pièges invisibles ?",
-    excerpt:
-      "Les freins de croissance qu'on ne voit pas — et pourquoi en 2025, l'expérience client doit être irréprochable.",
-    date: '17 avril 2026',
-    readTime: '2 min',
-    tag: 'Stratégie',
-  },
-  {
-    slug: 'doubler-ventes-en-ligne-upsell',
-    title:
-      "J'ai vu des business e-commerce doubler leurs ventes en ligne en une année…",
-    excerpt:
-      'La stratégie d’upsell « good, better, best » : comment la structurer pour doubler vos ventes en ligne.',
-    date: '24 mars 2026',
-    readTime: '2 min',
-    tag: 'Conversion',
-  },
-  {
-    slug: 'beaute-strategie-ecommerce',
-    title:
-      "🪞 Miroir, miroir, dis-moi qui aura la plus belle stratégie e-commerce dans l'industrie de la beauté…",
-    excerpt:
-      'Marché de la beauté : 24,5 % du marché US des cosmétiques en ligne projeté à horizon 2028.',
-    date: '24 mars 2026',
-    readTime: '1 min',
-    tag: 'Marché',
-  },
-  {
-    slug: 'levier-strategique-meconnu',
-    title:
-      "Un levier stratégique méconnu en e-commerce… vous voulez l'info ?",
-    excerpt:
-      'La recherche interne — l’un des leviers e-commerce les plus sous-exploités, et pourquoi cela coûte cher.',
-    date: '24 mars 2026',
-    readTime: '2 min',
-    tag: 'Conversion',
-  },
-  {
-    slug: 'digital-river-depot-de-bilan',
-    title:
-      "🚨 Digital River en dépôt de bilan : séisme dans le monde de l'e-commerce 🚨",
-    excerpt:
-      'Une faillite qui en dit long sur l’infrastructure du e-commerce mondial — analyse et conséquences.',
-    date: '24 mars 2026',
-    readTime: '2 min',
-    tag: 'Actualité',
-  },
-  {
-    slug: 'mobile-conversion-superieure',
-    title:
-      'Les sites e-commerce optimisés pour mobile enregistrent un taux de conversion 1,5× supérieur',
-    excerpt:
-      "74 % des transactions e-commerce mondiales se font sur mobile. Ce que cela implique pour votre conversion.",
-    date: '24 mars 2026',
-    readTime: '1 min',
-    tag: 'Mobile',
-  },
-]
 
 export default function BlogPage() {
   const [featured, ...rest] = POSTS
@@ -107,100 +46,119 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Featured post */}
-      <section className="section" style={{ paddingTop: 48 }}>
-        <div className="container">
-          <Reveal>
-            <Link
-              href={`/blog/${featured.slug}`}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: 64,
-                alignItems: 'center',
-                background: 'var(--navy)',
-                color: '#fff',
-                padding: 56,
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-              className="featured-post"
-            >
-              <div
+      {featured && (
+        <section className="section" style={{ paddingTop: 48 }}>
+          <div className="container">
+            <Reveal>
+              <Link
+                href={`/blog/${featured.slug}`}
                 style={{
-                  position: 'absolute',
-                  inset: 0,
-                  opacity: 0.08,
-                  pointerEvents: 'none',
-                  backgroundImage:
-                    'radial-gradient(circle at 80% 30%, #ff6600 0, transparent 50%)',
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: 64,
+                  alignItems: 'center',
+                  background: 'var(--navy)',
+                  color: '#fff',
+                  padding: 56,
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}
-              />
-              <div style={{ position: 'relative' }}>
-                <p
-                  className="eyebrow"
-                  style={{ color: '#ff6600', marginBottom: 24 }}
-                >
-                  À la une · {featured.tag}
-                </p>
-                <h2
-                  className="display-2"
+                className="featured-post"
+              >
+                <div
                   style={{
-                    color: '#fff',
-                    fontSize: 'clamp(28px, 3.6vw, 48px)',
-                    marginBottom: 24,
+                    position: 'absolute',
+                    inset: 0,
+                    opacity: 0.08,
+                    pointerEvents: 'none',
+                    backgroundImage:
+                      'radial-gradient(circle at 80% 30%, #ff6600 0, transparent 50%)',
                   }}
-                >
-                  {featured.title}
-                </h2>
-                <p
-                  style={{
-                    fontFamily: "'Prompt', sans-serif",
-                    fontSize: 17,
-                    color: 'rgba(255,255,255,0.75)',
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {featured.excerpt}
-                </p>
-              </div>
-              <div style={{ position: 'relative', textAlign: 'right' }}>
-                <p
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: 12,
-                    letterSpacing: '0.18em',
-                    color: 'rgba(255,255,255,0.5)',
-                    marginBottom: 16,
-                  }}
-                >
-                  {featured.date} · {featured.readTime}
-                </p>
-                <span
-                  style={{
-                    fontFamily: "'Prompt', sans-serif",
-                    fontSize: 13,
-                    fontWeight: 600,
-                    letterSpacing: '0.14em',
-                    textTransform: 'uppercase',
-                    color: '#fcc01e',
-                  }}
-                >
-                  Lire l&apos;article →
-                </span>
-              </div>
-            </Link>
-          </Reveal>
-        </div>
-        <style dangerouslySetInnerHTML={{ __html: `
-          @media (max-width: 800px) {
-            .featured-post { grid-template-columns: 1fr !important; gap: 32px !important; padding: 32px !important; }
-            .featured-post > div:last-child { text-align: left !important; }
-          }
-        ` }} />
-      </section>
+                />
+                <div style={{ position: 'relative' }}>
+                  <p className="eyebrow" style={{ color: '#ff6600', marginBottom: 24 }}>
+                    À la une · {featured.category}
+                  </p>
+                  <h2
+                    className="display-2"
+                    style={{
+                      color: '#fff',
+                      fontSize: 'clamp(28px, 3.6vw, 48px)',
+                      marginBottom: 24,
+                    }}
+                  >
+                    {featured.title}
+                  </h2>
+                  <p
+                    style={{
+                      fontFamily: "'Prompt', sans-serif",
+                      fontSize: 17,
+                      color: 'rgba(255,255,255,0.75)',
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {featured.excerpt}
+                  </p>
+                </div>
+                <div style={{ position: 'relative' }}>
+                  {featured.image && (
+                    <div
+                      style={{
+                        position: 'relative',
+                        aspectRatio: '4 / 3',
+                        marginBottom: 20,
+                        overflow: 'hidden',
+                        borderRadius: 4,
+                      }}
+                    >
+                      <Image
+                        src={featured.image}
+                        alt={featured.title}
+                        fill
+                        sizes="(max-width: 800px) 100vw, 50vw"
+                        priority
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                  )}
+                  <div style={{ textAlign: 'right' }}>
+                    <p
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: 12,
+                        letterSpacing: '0.18em',
+                        color: 'rgba(255,255,255,0.5)',
+                        marginBottom: 16,
+                      }}
+                    >
+                      {featured.dateLabel} · {featured.readTime}
+                    </p>
+                    <span
+                      style={{
+                        fontFamily: "'Prompt', sans-serif",
+                        fontSize: 13,
+                        fontWeight: 600,
+                        letterSpacing: '0.14em',
+                        textTransform: 'uppercase',
+                        color: '#fcc01e',
+                      }}
+                    >
+                      Lire l&apos;article →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          </div>
+          <style dangerouslySetInnerHTML={{ __html: `
+            @media (max-width: 800px) {
+              .featured-post { grid-template-columns: 1fr !important; gap: 32px !important; padding: 32px !important; }
+              .featured-post > div:last-child { text-align: left !important; }
+            }
+          ` }} />
+        </section>
+      )}
 
-      {/* Posts grid */}
       <section className="section" style={{ paddingTop: 0, background: 'var(--bg-section)' }}>
         <div className="container">
           <Reveal stagger>
@@ -218,6 +176,26 @@ export default function BlogPage() {
                   className="card"
                   style={{ display: 'flex', flexDirection: 'column' }}
                 >
+                  {p.image && (
+                    <div
+                      style={{
+                        position: 'relative',
+                        aspectRatio: '16 / 10',
+                        marginBottom: 20,
+                        overflow: 'hidden',
+                        borderRadius: 2,
+                        background: 'var(--bg-soft)',
+                      }}
+                    >
+                      <Image
+                        src={p.image}
+                        alt={p.title}
+                        fill
+                        sizes="(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                  )}
                   <div
                     style={{
                       display: 'flex',
@@ -225,7 +203,7 @@ export default function BlogPage() {
                       marginBottom: 24,
                     }}
                   >
-                    <span className="tag">{p.tag}</span>
+                    <span className="tag">{p.category}</span>
                     <span
                       style={{
                         fontFamily: "'JetBrains Mono', monospace",
@@ -277,7 +255,7 @@ export default function BlogPage() {
                         letterSpacing: '0.05em',
                       }}
                     >
-                      {p.date}
+                      {p.dateLabel}
                     </span>
                     <span
                       style={{
