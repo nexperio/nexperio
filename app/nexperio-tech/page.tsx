@@ -238,75 +238,106 @@ export default function NexperioTechPage() {
               }}
             >
               {TOOLS.map((t) => (
-                <Link
+                <div
                   key={t.slug}
-                  href={`/nexperio-tech/${t.slug}`}
                   className="card"
-                  style={{ display: 'flex', flexDirection: 'column' }}
+                  style={{ display: 'flex', flexDirection: 'column', padding: 0 }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32 }}>
-                    <span className="tag">{t.tag}</span>
-                    <span
+                  <Link
+                    href={`/nexperio-tech/${t.slug}`}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      flex: 1,
+                      padding: 'var(--card-padding, 32px)',
+                      color: 'inherit',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 32 }}>
+                      <span className="tag">{t.tag}</span>
+                      <span
+                        style={{
+                          fontFamily: "'JetBrains Mono', monospace",
+                          fontSize: 13,
+                          color: 'var(--ink-mute)',
+                        }}
+                      >
+                        {t.num}
+                      </span>
+                    </div>
+                    <h3
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: 13,
-                        color: 'var(--ink-mute)',
+                        fontFamily: "'Prompt', sans-serif",
+                        fontWeight: 700,
+                        fontSize: 24,
+                        marginBottom: 16,
+                        letterSpacing: '-0.01em',
                       }}
                     >
-                      {t.num}
-                    </span>
-                  </div>
-                  <h3
-                    style={{
-                      fontFamily: "'Prompt', sans-serif",
-                      fontWeight: 700,
-                      fontSize: 24,
-                      marginBottom: 16,
-                      letterSpacing: '-0.01em',
-                    }}
-                  >
-                    {t.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: "'Prompt', sans-serif",
-                      fontSize: 15,
-                      color: 'var(--ink-soft)',
-                      lineHeight: 1.6,
-                      marginBottom: 24,
-                      flex: 1,
-                    }}
-                  >
-                    {t.description}
-                  </p>
+                      {t.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "'Prompt', sans-serif",
+                        fontSize: 15,
+                        color: 'var(--ink-soft)',
+                        lineHeight: 1.6,
+                        flex: 1,
+                      }}
+                    >
+                      {t.description}
+                    </p>
+                  </Link>
                   <div
                     style={{
-                      paddingTop: 24,
+                      padding: '20px var(--card-padding, 32px)',
                       borderTop: '1px solid var(--line)',
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
                       gap: 12,
+                      flexWrap: 'wrap',
                     }}
                   >
-                    <span
+                    <Link
+                      href={`/nexperio-tech/${t.slug}`}
                       style={{
                         fontFamily: "'Prompt', sans-serif",
                         fontSize: 13,
                         fontWeight: 600,
                         letterSpacing: '0.08em',
                         textTransform: 'uppercase',
-                        color: 'var(--orange)',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: 8,
+                        color: 'var(--ink-mute)',
+                        textDecoration: 'none',
                       }}
                     >
-                      <span className="pulse-dot" style={{ width: 6, height: 6 }} />
-                      Découvrir →
-                    </span>
+                      Le détail →
+                    </Link>
+                    {t.href && (
+                      <a
+                        href={t.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          fontFamily: "'Prompt', sans-serif",
+                          fontSize: 13,
+                          fontWeight: 700,
+                          letterSpacing: '0.08em',
+                          textTransform: 'uppercase',
+                          color: 'var(--orange)',
+                          textDecoration: 'none',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 8,
+                        }}
+                      >
+                        <span className="pulse-dot" style={{ width: 6, height: 6 }} />
+                        Lancer l&apos;outil ↗
+                      </a>
+                    )}
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </Reveal>
@@ -802,6 +833,79 @@ export default function NexperioTechPage() {
             .real-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
           }
         `}</style>
+      </section>
+
+      {/* Transition vers nexperio.tech — le lab en live */}
+      <section
+        style={{
+          padding: '80px 0',
+          background: 'var(--navy-deep)',
+          color: '#fff',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.12,
+            pointerEvents: 'none',
+            backgroundImage:
+              'radial-gradient(circle at 85% 50%, #ff6600 0, transparent 55%)',
+          }}
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 40,
+              flexWrap: 'wrap',
+            }}
+          >
+            <div style={{ flex: '1 1 480px' }}>
+              <p
+                className="eyebrow"
+                style={{ color: '#ff6600', marginBottom: 16 }}
+              >
+                <span className="pulse-dot" /> Le lab en live
+              </p>
+              <h2
+                className="display-2"
+                style={{ color: '#fff', marginBottom: 16 }}
+              >
+                Le lab,{' '}
+                <span className="serif" style={{ color: '#fcc01e' }}>
+                  en accès direct.
+                </span>
+              </h2>
+              <p
+                style={{
+                  fontFamily: "'Prompt', sans-serif",
+                  fontSize: 18,
+                  color: 'rgba(255,255,255,0.78)',
+                  lineHeight: 1.6,
+                  maxWidth: 620,
+                }}
+              >
+                Vous avez lu la vitrine. Le vrai lab — outils, GPTs, apps — vit
+                sur <strong style={{ color: '#fff' }}>nexperio.tech</strong>.
+                Light, opérationnel, en libre-service.
+              </p>
+            </div>
+            <a
+              href="https://www.nexperio.tech"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-primary"
+              style={{ flexShrink: 0 }}
+            >
+              Visiter nexperio.tech <span className="arrow">↗</span>
+            </a>
+          </div>
+        </div>
       </section>
 
       <CTASection />
